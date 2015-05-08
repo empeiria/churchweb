@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Kirchenverzeichnis Social Media</title>
+  <link rel='stylesheet' href='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.css'>
+  <style>
+      #map {
+          /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
+          height: 1024px;
+      }
+  </style>
+</head>
+<body>
+<!-- code from: http://sandbox.idre.ucla.edu/?p=906 -->
+  <div id="map">
+      Bitte warten. Die Karte wird geladen.
+  </div>
+
+  <!-- Load libraries over https! -->
+  <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
+  <script src='https://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
+  <script src='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.js'></script>
+
+  <!-- The code for this script -->
+  <script type="text/javascript">
+// Think about wrapping the following in $(document).ready(function() { /* code goes here */ });
+// This way, for larger documents, the code is executed once the content is ready.
+var map;
+var markerArray = [];
+loadMap();
+
+function loadMap() {
+    'use strict'; // Strict mode makes the browse mourn, if bad practise is used ;-)
+    // create a map in the "map" div, set the view to a given place and zoom
+    map = L.map('map') // c.f. http://leafletjs.com/reference.html#map-l.map
+           .setView([25,8], 11); // c.f. http://leafletjs.com/reference.html#map-setview
+    
+    // add an OpenStreetMap tile layer
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { // c.f. http://leafletjs.com/reference.html#tilelayer-l.tilelayer
+        // c.f. http://leafletjs.com/reference.html#tilelayer-attribution
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map); // c.f. http://leafletjs.com/reference.html#tilelayer-addto
+
+    // map google spreadsheet data to marker
+    getGoogleData();
+};
+    
+function getGoogleData() {
+    'use strict';
+    var spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM';
+    var worksheetID = 'o65nb9w';
+    var url = 'https://spreadsheets.google.com/feeds/list/'+spreadsheetID+'/'+worksheetID+'/public/values?alt=json';
+    console.log('Fetching spreadsheet data from ', url);
+    
+    $.getJSON(url,function(data){ // c.f. https://api.jquery.com/jQuery.getJSON/
+        // Assign the JSON response to data
+        // Then look up a key "feed" in data.
+        // Then look up a key "entry" in feed. Its value is an Array (that is [] notation).
+        // For each entry in the array, call function with current index i and current value val
+        // Declare the variables used inside the following loop
+        var lat, lng, title, content, thisMarker;
+        $.each(data.feed.entry, function(i, val){ // c.f. https://api.jquery.com/jQuery.each/
+            // Assign parameters for mapping and infowindow
+            // For the current entry, look up the header lng, lat, namedergemeinde etc
+            // The variable name is build like so: gsx$ + tableheader without whitespace or _
+            // Get the value within the field $t
+            lng = val.gsx$lon.$t;
+            lat = val.gsx$lat.$t;
+            title = val.gsx$namedergemeinde.$t;
+            content = val.gsx$socialmediakanal.$t;
+    
+            // Build the popup for this row, that is, the small window, which you get when clicking on the marker
+            // Note that you can do various things here with the data from the spreadsheet
+            // Check, whether data could be extracted (esp. if lat or lng is empty, L throws an error!)
+            if (lat && lng && title && content) {
+                thisMarker = L.marker([lat, lng]); // c.f. http://leafletjs.com/reference.html#marker-l.marker
+                thisMarker.addTo(map) // c.f. http://leafletjs.com/reference.html#marker-addto
+                          .bindPopup('<strong>' + title + '</strong><br>' + '<a href="' + content + '">' + content + '</a>');
+                          // c.f. http://leafletjs.com/reference.html#marker-bindpopup
+    
+                // Push the marker to the Array which shall be displayed on the map
+                markerArray.push(thisMarker);
+            } else {
+                console.log('Problem with lat/lng for data entry', val);
+            }
+        });
+
+        // put markers into a group to 
+        var group = L.featureGroup(markerArray) // c.f. http://leafletjs.com/reference.html#featuregroup-l.featuregroup
+                     .addTo(map); // c.f. http://leafletjs.com/reference.html#layergroup-addto
+        // c.f. http://leafletjs.com/reference.html#featuregroup-getbounds
+        // c.f. http://leafletjs.com/reference.html#map-fitbounds
+        map.fitBounds(group.getBounds());
+    })
+};
+</script>
+</body>
+</html>
