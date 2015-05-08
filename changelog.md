@@ -5,7 +5,8 @@ Changelog
 
 # Version 0.3 by Jörg Lohrer
 * Spreadsheed überarbeitet und Patricks bereinigte Daten eingepflegt in
-spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM'
+ *  spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM'
+ *  worksheetID " 'obb1315'
 * Formularvorschlag von Patrick umgesetzt und dem Ursprungs-Sheet hinzugefügt https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform
 * Macro "geocode selected cells" bereitgestellt, damit die Adressen geocodiert werden können.
 * Andrés durchkommentierte Codebereinigung übernommen
