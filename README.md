@@ -3,7 +3,7 @@ social media activities of german churches - Kirchengemeinden in sozialen Netzwe
 Screenshot
 =====================
 ![Screenshot](http://i.imgur.com/yOrHkhA.png)
-Open Data
+Open extendable Data
 =====================
 https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM
 Demo
