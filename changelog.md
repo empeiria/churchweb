@@ -8,6 +8,7 @@ Changelog
 spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM'
 * Formularvorschlag von Patrick umgesetzt und dem Ursprungs-Sheet hinzugefügt https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform
 * Macro "geocode selected cells" bereitgestellt, damit die Adressen geocodiert werden können.
+* Andrés durchkommentierte Codebereinigung übernommen
 
 # Version 0.2 by Patrick Robrecht
 
