@@ -1,9 +1,29 @@
 
-Kirchen in Social Media
+# Aktuelle Version
 
-Changelog
+Aktuelle Karte: http://kirche-social-media.patrick-robrecht.de/
 
-# Version 0.3 by Jörg Lohrer
+Daten:
+* Formular: https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform
+* Tabelle: https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/edit?pli=1#gid=372282382, Blatt "Formularantworten"
+* JSON: https://spreadsheets.google.com/feeds/list/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/obb1315/public/values?alt=json
+
+# To-Do-Liste
+
+## Datensammlung
+* Macro für automatische Koordinaten-Berechnung auf neue Daten anwenden
+* automatische Sortierung der Daten in der Tabelle nach PLZ (erleichert die Suche, ob eine bestimmte Gemeinde in der Liste enthalten ist)
+
+## Kartenansicht
+* ?
+
+# Changelog
+
+## Version 0.4 by Patrick Robrecht
+* Kombination von Eintrags-Anzeige aus 0.2 mit Daten aus 0.3
+* Kleine Änderungen im Formular ('-' aus Spaltenbezeichnungen entfernt, damit diese nicht im JSON aufteilen)
+
+## Version 0.3 by Jörg Lohrer
 * Spreadsheed überarbeitet und Patricks bereinigte Daten eingepflegt in
  *  spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM'
  *  worksheetID " 'obb1315'
@@ -11,19 +31,10 @@ Changelog
 * Macro "geocode selected cells" bereitgestellt, damit die Adressen geocodiert werden können.
 * Andrés durchkommentierte Codebereinigung übernommen
 
-# Version 0.2 by Patrick Robrecht
-
+## Version 0.2 by Patrick Robrecht
 * Ergänzungen können jetzt per Formular übermittelt werden.
-* Zu jedem Eintrag werden nun Name, Adresse, Bistum/Landeskirche, Konfession sowie Webauftritt, Facebook-Seite, Twitter-Profil, Google+-Seite und Youtube-Kanal angezeigt (sofern bekannt/vorhanden).
-* Optional kann ein Logo hinzugefügt werden.
-* Tabelle mit den Antworten
-* JSON
-* Karte mit den Daten
+* Zu jedem Eintrag werden nun Name, Adresse, Bistum/Landeskirche, Konfession sowie Webauftritt, Facebook-Seite, Twitter-Profil, Google+-Seite und Youtube-Kanal angezeigt (sofern bekannt/vorhanden). Optional kann ein Logo hinzugefügt werden.
+* Karte mit den Daten nun je Gemeinde ein Punkt auf der Karte
 
-# Version 0.1 by Jörg Lohrer
-* Original map by Jörg Lohrer
-* JSON Data
-* Code
-* Impressum
-
-
+## Version 0.1 by Jörg Lohrer
+* Original-Karte, je Social-Media-Eintrag ein Punkt
