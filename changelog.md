@@ -11,13 +11,16 @@ Daten:
 # To-Do-Liste
 
 ## Datensammlung
-* Macro für automatische Koordinaten-Berechnung auf neue Daten anwenden
 * automatische Sortierung der Daten in der Tabelle nach PLZ (erleichert die Suche, ob eine bestimmte Gemeinde in der Liste enthalten ist)
+* weitere Ideen?
 
 ## Kartenansicht
-* ?
+* Ideen?
 
 # Changelog
+
+## Version 0.6 by Patrick Robrecht
+* Filter nach Konfession und Social-Media-Kanälen ergänzt
 
 ## Version 0.5 by Patrick Robrecht
 * Berechnung der Koordinaten in Google Docs-Tabelle automatisiert.

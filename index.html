@@ -31,11 +31,20 @@
 		// This way, for larger documents, the code is executed once the content is ready.
 		var map;
 		var markerArray = [];
+		var webLayer = new L.LayerGroup;
+		var facebookLayer = new L.LayerGroup;
+		var googleLayer = new L.LayerGroup;
+		var twitterLayer = new L.LayerGroup;
+		var youtubeLayer = new L.LayerGroup;
+		var allLayer = new L.LayerGroup;
+		var protestantLayer = new L.LayerGroup;
+		var catholicLayer = new L.LayerGroup;
+		var othersLayer = new L.LayerGroup;
 		loadMap();
 		function loadMap() {
 			'use strict'; // Strict mode makes the browse mourn, if bad practise is used ;-)
 			// create a map in the "map" div, set the view to a given place and zoom
-			map = L.map('map') // c.f. http://leafletjs.com/reference.html#map-l.map
+			map = L.map('map', {layers: [allLayer]}) // c.f. http://leafletjs.com/reference.html#map-l.map
 			.setView([ 25, 8 ], 11); // c.f. http://leafletjs.com/reference.html#map-setview
 
 			// add an OpenStreetMap tile layer
@@ -86,7 +95,7 @@
 							youtube = val.gsx$urlyoutube.$t;
 							image = val.gsx$urlbild.$t;
 							content = '<strong>' + title + '</strong><br>' + address + '<br>' + diocese;
-							var urls = '<ul>'
+							urls = '<ul>'
 							if (web != '') {
 								urls = urls + '<li><a href="' + web + '">Webauftritt</a></li>';
 							}
@@ -95,6 +104,9 @@
 							}
 							if (google != '') {
 								urls = urls + '<li><a href="' + google + '">Google+</a></li>';
+							}
+							if (twitter != '') {
+								urls = urls + '<li><a href="' + twitter + '">Twitter</a></li>';
 							}
 							if (youtube != '') {
 								urls = urls + '<li><a href="' + youtube + '">YouTube</a></li>';
@@ -107,17 +119,54 @@
 							// Note that you can do various things here with the data from the spreadsheet
 							// Check, whether data could be extracted (esp. if lat or lng is empty, L throws an error!)
 							if (lat && lng && title && content && urls) {
-								thisMarker = L.marker([lat, lng ]); // c.f. http://leafletjs.com/reference.html#marker-l.marker
-														thisMarker.addTo(map) // c.f. http://leafletjs.com/reference.html#marker-addto
-														.bindPopup(content + urls);
-														// c.f. http://leafletjs.com/reference.html#marker-bindpopup
-														// Push the marker to the Array which shall be displayed on the map
-														markerArray.push(thisMarker);
+								thisMarker = L.marker([lat, lng], {title: title}); // c.f. http://leafletjs.com/reference.html#marker-l.marker
+								thisMarker.addTo(map) // c.f. http://leafletjs.com/reference.html#marker-addto
+									.bindPopup(content + urls); // c.f. http://leafletjs.com/reference.html#marker-bindpopup
+								// Push the marker to the Array which shall be displayed on the map
+								markerArray.push(thisMarker);
+								// add to the layers for the denominations
+								thisMarker.addTo(allLayer);
+								if (denomination == 'evangelisch') {
+									thisMarker.addTo(protestantLayer);
+								} else if (denomination == 'katholisch') {
+									thisMarker.addTo(catholicLayer);
+								} else {
+									thisMarker.addTo(othersLayer);
+								}
+								// add to the layers for the social networks
+								if (web != '') {
+									thisMarker.addTo(webLayer);
+								}
+								if (facebook != '') {
+									thisMarker.addTo(facebookLayer);
+								}
+								if (google != '') {
+									thisMarker.addTo(googleLayer);
+								}
+								if (twitter != '') {
+									thisMarker.addTo(twitterLayer);
+								}
+								if (youtube != '') {
+									thisMarker.addTo(youtubeLayer);
+								}
 							} else {
 								console.log('Problem with lat/lng for data entry' + title, val);
 							}
 						});
-						// put markers into a group to 
+						// add control for the layers
+						var layers = {
+							"alle": allLayer,
+							"evangelisch": protestantLayer,
+							"katholisch": catholicLayer,
+							"andere Konfession": othersLayer,
+							"Webseiten": webLayer,
+							"Facebook": facebookLayer,
+							"Google+": googleLayer,
+							"Twitter": twitterLayer,
+							"YouTube": youtubeLayer,
+						}
+						L.control.layers(layers).addTo(map);
+						// put markers into a group to
 						var group = L.featureGroup(markerArray) // c.f. http://leafletjs.com/reference.html#featuregroup-l.featuregroup
 								.addTo(map); // c.f. http://leafletjs.com/reference.html#layergroup-addto
 							// c.f. http://leafletjs.com/reference.html#featuregroup-getbounds
