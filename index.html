@@ -72,9 +72,11 @@
 							title = val.gsx$name.$t;
 							denomination = val.gsx$konfession.$t;
 							if (denomination == 'evangelisch') {
-								diocese = val.gsx$landeskirche.$t;
+								diocese = val.gsx$landeskirche.$t + ' (evangelisch)';
 							} else if (denomination == 'katholisch') {
-								diocese = val.gsx$bistum.$t;
+								diocese = val.gsx$bistum.$t + ' (katholisch)';
+							} else {
+								diocese = denomination;
 							}
 							address = val.gsx$concenatefunction.$t;
 							web = val.gsx$urlwebseite.$t;
@@ -83,7 +85,7 @@
 							twitter = val.gsx$urltwitter.$t;
 							youtube = val.gsx$urlyoutube.$t;
 							image = val.gsx$urlbild.$t;
-							content = '<strong>' + title + '</strong><br>' + address + '<br>' + diocese + ', ' + denomination;
+							content = '<strong>' + title + '</strong><br>' + address + '<br>' + diocese;
 							var urls = '<ul>'
 							if (web != '') {
 								urls = urls + '<li><a href="' + web + '">Webauftritt</a></li>';
