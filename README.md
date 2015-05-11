@@ -1,5 +1,5 @@
-# The churchweb project
-This project realizes a map of social media activities of german churches.
+﻿# The churchweb project
+This project realizes a map of social media activities of churches in the German speaking countries.
 
 Map: http://kirche-social-media.patrick-robrecht.de/
 
@@ -18,7 +18,7 @@ The data: https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP
 If you want to add data, you can submit your data in this form: https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform. The data will be added to the table and to the map automatically.
 
 # Kirchengemeinden in sozialen Netzwerken
-Wir realisieren hiermit eine Karte der Social-Media-Aktivitäten evangelischer und katholischer Kirchengemeinden in Deutschland.
+Wir realisieren hiermit eine Karte der Social-Media-Aktivitäten christlicher Kirchen im deutschsprachigen Raum.
 
 Karte: http://kirche-social-media.patrick-robrecht.de/
 

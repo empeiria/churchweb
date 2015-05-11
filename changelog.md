@@ -1,4 +1,4 @@
-
+﻿
 # Aktuelle Version
 
 Aktuelle Karte: http://kirche-social-media.patrick-robrecht.de/
@@ -18,6 +18,10 @@ Daten:
 * ?
 
 # Changelog
+
+## Version 0.5 by Patrick Robrecht
+* Berechnung der Koordinaten in Google Docs-Tabelle automatisiert.
+* in Karte Hinweis auf das Formular zum Eintragen und die Tabelle mit Daten ergänzt
 
 ## Version 0.4 by Patrick Robrecht
 * Kombination von Eintrags-Anzeige aus 0.2 mit Daten aus 0.3
