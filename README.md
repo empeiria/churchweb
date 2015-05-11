@@ -1,46 +1,34 @@
-# churchweb
-social media activities of german churches - Kirchengemeinden in sozialen Netzwerken
-Screenshot
-=====================
-![Screenshot](http://i.imgur.com/yOrHkhA.png)
-Open extendable Data
-=====================
-https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM
-Demo
-=====================
-http://kirche-social-media.patrick-robrecht.de/index.html
-Features:
----------------------
+# The churchweb project
+This project realizes a map of social media activities of german churches.
+
+Map: http://kirche-social-media.patrick-robrecht.de/
+
+## Features
 * open data in google spreadsheet
 * open visualisation with leaflet
 * open mapping with OpenStreetMap
 
+For recent changes, check our changelog.
 
-Changelog
-------------------
+## OpenData 
+We use the open data to realize this project.
 
-# Version 0.3 by Jörg Lohrer
-* Spreadsheed überarbeitet und Patricks bereinigte Daten eingepflegt in
- *  spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM'
- *  worksheetID " 'obb1315'
-* Formularvorschlag von Patrick umgesetzt und dem Ursprungs-Sheet hinzugefügt https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform
-* Macro "geocode selected cells" bereitgestellt, damit die Adressen geocodiert werden können.
-* Andrés durchkommentierte Codebereinigung übernommen
+The data: https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM
 
-# Version 0.2 by Patrick Robrecht
+If you want to add data, you can submit your data in this form: https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform. The data will be added to the table and to the map automatically.
 
-* Ergänzungen können jetzt per Formular übermittelt werden.
-* Zu jedem Eintrag werden nun Name, Adresse, Bistum/Landeskirche, Konfession sowie Webauftritt, Facebook-Seite, Twitter-Profil, Google+-Seite und Youtube-Kanal angezeigt (sofern bekannt/vorhanden).
-* Optional kann ein Logo hinzugefügt werden.
-* Tabelle mit den Antworten
-* JSON
-* Karte mit den Daten
+# Kirchengemeinden in sozialen Netzwerken
+Wir realisieren hiermit eine Karte der Social-Media-Aktivitäten evangelischer und katholischer Kirchengemeinden in Deutschland.
 
-# Version 0.1 by Jörg Lohrer
-* Original map by Jörg Lohrer
-* JSON Data
-* Code
-* Impressum
+Karte: http://kirche-social-media.patrick-robrecht.de/
 
+## Funktionen
+* offene Daten (in Google Spreadsheet)
+* offene Visualisierung mit Leaflet
+* offene Karte mit OpenStreetMap
 
+Aktuelle Änderungen gibt es im Changelog.
 
+Screenshot
+=====================
+![Screenshot](http://i.imgur.com/yOrHkhA.png)
