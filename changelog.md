@@ -1,23 +1,20 @@
-﻿
-# Aktuelle Version
+﻿# Aktuelle Version
 
 Aktuelle Karte: http://kirche-social-media.patrick-robrecht.de/
 
 Daten:
 * Formular: https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform
-* Tabelle: https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/edit?pli=1#gid=372282382, Blatt "Formularantworten"
-* JSON: https://spreadsheets.google.com/feeds/list/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/obb1315/public/values?alt=json
-
-# To-Do-Liste
-
-## Datensammlung
-* automatische Sortierung der Daten in der Tabelle nach PLZ (erleichert die Suche, ob eine bestimmte Gemeinde in der Liste enthalten ist)
-* weitere Ideen?
-
-## Kartenansicht
-* Ideen?
+* Tabelle: https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/edit?pli=1#gid=372282382
+* JSON: https://spreadsheets.google.com/feeds/list/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/obb1315/public/values?alt=json (verwendet, um die Karte zu realisieren)
 
 # Changelog
+
+## Ideen
+* Daten-Tabelle: automatische Sortierung nach PLZ (erleichert die Suche, ob eine bestimmte Gemeinde in der Liste enthalten ist)
+* weitere Ideen?
+
+## Version 0.7 by Patrick Robrecht
+* verschiedene Farben für evangelisch / katholisch / andere
 
 ## Version 0.6 by Patrick Robrecht
 * Filter nach Konfession und Social-Media-Kanälen ergänzt

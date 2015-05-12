@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-	<title>Kirchenverzeichnis Social Media</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Kirchenverzeichnis Social Media - Kartenansicht</title>
+	<meta name="description" content="Eine Karte mit den Webseiten und Social-Media-Auftritten von Kirchen im deutschsprachigen Raum.">
 	<link rel='stylesheet' href='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.css'>
 	<style>
 	#map {
-		/* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
-		height: 1024px;
+		height: 1024px; /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
 	}
 	</style>
 </head>
 <body>
 	<!-- code from: http://sandbox.idre.ucla.edu/?p=906 -->
-	<h1>Kirchenverzeichnis Social Media</h1>
-	<p>Die Karte zeigt christliche Kirchen im deutschsprachigen Raum, realisiert mit Kartenmaterial von OpenStreetMap. 
+	<h1>Kirchenverzeichnis Webauftritte und Social Media - Kartenansicht</h1>
+	<p>Die Karte zeigt christliche Kirchen im deutschsprachigen Raum mit ihren Webauftritten und Social-Media-Profilen, realisiert mit Kartenmaterial von OpenStreetMap: 
+		Dabei sind evangelische lila, katholische Gemeinden gelb und andere grün dargestellt.
 		Wenn Ihre Gemeinde noch fehlt, können Sie diese über <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">dieses Formular</a> eintragen lassen. 
 		Eine tabellarische Übersicht der bereits eingetragenen Daten gibt es in <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">dieser Tabelle</a>.</p>
 	<div id="map">Bitte warten. Die Karte wird geladen.</div>
 
 	<!-- Load libraries over https! -->
 	<script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
-	<script src='https://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
-	<script
-		src='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.js'></script>
+	<!-- <script src='https://code.jquery.com/jquery-migrate-1.2.1.min.js'></script> -->
+	<script src='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.js'></script>
 
 	<!-- The code for this script -->
 	<script type="text/javascript">
@@ -31,21 +32,27 @@
 		// This way, for larger documents, the code is executed once the content is ready.
 		var map;
 		var markerArray = [];
+		// the layers
+		var allLayer = new L.LayerGroup;
+		var protestantLayer = new L.LayerGroup;
+		var catholicLayer = new L.LayerGroup;
+		var othersLayer = new L.LayerGroup;
 		var webLayer = new L.LayerGroup;
 		var facebookLayer = new L.LayerGroup;
 		var googleLayer = new L.LayerGroup;
 		var twitterLayer = new L.LayerGroup;
 		var youtubeLayer = new L.LayerGroup;
-		var allLayer = new L.LayerGroup;
-		var protestantLayer = new L.LayerGroup;
-		var catholicLayer = new L.LayerGroup;
-		var othersLayer = new L.LayerGroup;
+		// the icons
+		var catholicIcon = L.icon({iconUrl: 'marker-icon-yellow.png'});
+		var protestantIcon = L.icon({iconUrl: 'marker-icon-purple.png'});
+		var othersIcon = L.icon({iconUrl: 'marker-icon-green.png'});
 		loadMap();
+		
 		function loadMap() {
 			'use strict'; // Strict mode makes the browse mourn, if bad practise is used ;-)
 			// create a map in the "map" div, set the view to a given place and zoom
 			map = L.map('map', {layers: [allLayer]}) // c.f. http://leafletjs.com/reference.html#map-l.map
-			.setView([ 25, 8 ], 11); // c.f. http://leafletjs.com/reference.html#map-setview
+			.setView([25, 8], 11); // c.f. http://leafletjs.com/reference.html#map-setview
 
 			// add an OpenStreetMap tile layer
 			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { // c.f. http://leafletjs.com/reference.html#tilelayer-l.tilelayer
@@ -69,11 +76,11 @@
 					// Then look up a key "entry" in feed. Its value is an Array (that is [] notation).
 					// For each entry in the array, call function with current index i and current value val
 					// Declare the variables used inside the following loop
-					var lat, lng, title, denomination, diocese, address, web, facebook, google, twitter, youtube, image, content, urls, thisMarker;
+					var lat, lng, title, denomination, diocese, icon, address, web, facebook, google, twitter, youtube, image, content, urls, thisMarker;
 					$.each(data.feed.entry,
 						function(i, val) { // c.f. https://api.jquery.com/jQuery.each/
 							// Assign parameters for mapping and infowindow
-							// For the current entry, look up the header lng, lat, namedergemeinde etc
+							// For the current entry, look up the header lng, lat, name etc.
 							// The variable name is build like so: gsx$ + tableheader without whitespace or _
 							// Get the value within the field $t
 							lng = val.gsx$lon.$t;
@@ -82,12 +89,15 @@
 							denomination = val.gsx$konfession.$t;
 							if (denomination == 'evangelisch') {
 								diocese = val.gsx$landeskirche.$t + ' (evangelisch)';
+								icon = protestantIcon;
 							} else if (denomination == 'katholisch') {
 								diocese = val.gsx$bistum.$t + ' (katholisch)';
+								icon = catholicIcon;
 							} else {
 								diocese = denomination;
+								icon = othersIcon;
 							}
-							address = val.gsx$concenatefunction.$t;
+							address = val.gsx$adresse.$t;
 							web = val.gsx$urlwebseite.$t;
 							facebook = val.gsx$urlfacebook.$t;
 							google = val.gsx$urlgoogle.$t;
@@ -119,7 +129,7 @@
 							// Note that you can do various things here with the data from the spreadsheet
 							// Check, whether data could be extracted (esp. if lat or lng is empty, L throws an error!)
 							if (lat && lng && title && content && urls) {
-								thisMarker = L.marker([lat, lng], {title: title}); // c.f. http://leafletjs.com/reference.html#marker-l.marker
+								thisMarker = L.marker([lat, lng], {title: title, icon: icon}); // c.f. http://leafletjs.com/reference.html#marker-l.marker
 								thisMarker.addTo(map) // c.f. http://leafletjs.com/reference.html#marker-addto
 									.bindPopup(content + urls); // c.f. http://leafletjs.com/reference.html#marker-bindpopup
 								// Push the marker to the Array which shall be displayed on the map
@@ -171,7 +181,7 @@
 								.addTo(map); // c.f. http://leafletjs.com/reference.html#layergroup-addto
 							// c.f. http://leafletjs.com/reference.html#featuregroup-getbounds
 							// c.f. http://leafletjs.com/reference.html#map-fitbounds
-							map.fitBounds(group.getBounds());
+						map.fitBounds(group.getBounds());
 					})
 		};
 	</script>
