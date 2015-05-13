@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Kirchenverzeichnis Social Media - Kartenansicht</title>
+	<meta name="description" content="Eine Karte mit den Webseiten und Social-Media-Auftritten von Kirchen im deutschsprachigen Raum.">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel='stylesheet' href='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.css'>
+	<style>
+	#map {
+		height: 1024px; /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
+	}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Kirchenverzeichnis Webauftritte und Social Media</h1>
+		<nav>
+			<ul>
+				<li><a href="../">Das Projekt</a></li>
+				<li>Kartenansicht</li>
+				<li><a href="../tabelle/">Tabellenansicht</a></li>
+				<li><a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Gemeinde ergänzen</a></li>
+				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Daten bearbeiten</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h1>Kartenansicht</h1>
+		<p>Die Karte zeigt christliche Kirchen mit ihren Webauftritten und Social-Media-Profilen; dabei sind evangelische lila, katholische gelb und andere grün dargestellt.</p>
+		<p>Wenn Ihre Gemeinde noch fehlt, können Sie diese über <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">dieses Formular</a> eintragen lassen. 
+			Eine tabellarische Übersicht der bereits eingetragenen Daten gibt es in <a href="../tabelle/">dieser Tabelle</a>.</p>
+		<div id="map">Bitte warten. Die Karte wird geladen.</div>
+	</main>
+	<!-- code from: http://sandbox.idre.ucla.edu/?p=906 -->
+	<!-- Load libraries over https! -->
+	<script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
+	<!-- <script src='https://code.jquery.com/jquery-migrate-1.2.1.min.js'></script> -->
+	<script src='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.js'></script>
+
+	<!-- The code for this script -->
+	<script type="text/javascript">
+		// Think about wrapping the following in $(document).ready(function() { /* code goes here */ });
+		// This way, for larger documents, the code is executed once the content is ready.
+		var map;
+		var markerArray = [];
+		// the layers
+		var allLayer = new L.LayerGroup;
+		var protestantLayer = new L.LayerGroup;
+		var catholicLayer = new L.LayerGroup;
+		var othersLayer = new L.LayerGroup;
+		var webLayer = new L.LayerGroup;
+		var facebookLayer = new L.LayerGroup;
+		var googleLayer = new L.LayerGroup;
+		var twitterLayer = new L.LayerGroup;
+		var youtubeLayer = new L.LayerGroup;
+		// the icons
+		var catholicIcon = L.icon({iconUrl: 'marker-icon-yellow.png'});
+		var protestantIcon = L.icon({iconUrl: 'marker-icon-purple.png'});
+		var othersIcon = L.icon({iconUrl: 'marker-icon-green.png'});
+		loadMap();
+		
+		function loadMap() {
+			'use strict'; // Strict mode makes the browse mourn, if bad practise is used ;-)
+			// create a map in the "map" div, set the view to a given place and zoom
+			map = L.map('map', {layers: [allLayer]}) // c.f. http://leafletjs.com/reference.html#map-l.map
+			.setView([25, 8], 11); // c.f. http://leafletjs.com/reference.html#map-setview
+
+			// add an OpenStreetMap tile layer
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { // c.f. http://leafletjs.com/reference.html#tilelayer-l.tilelayer
+						// c.f. http://leafletjs.com/reference.html#tilelayer-attribution
+						attribution : '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+				}).addTo(map); // c.f. http://leafletjs.com/reference.html#tilelayer-addto
+			// map google spreadsheet data to marker
+			getGoogleData();
+		};
+
+		function getGoogleData() {
+			'use strict';
+			var spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM';
+			var worksheetID = 'obb1315';
+			var url = 'https://spreadsheets.google.com/feeds/list/' + spreadsheetID + '/' + worksheetID + '/public/values?alt=json';
+			console.log('Fetching spreadsheet data from ', url);
+			$.getJSON(url,
+				function(data) { // c.f. https://api.jquery.com/jQuery.getJSON/
+					// Assign the JSON response to data
+					// Then look up a key "feed" in data.
+					// Then look up a key "entry" in feed. Its value is an Array (that is [] notation).
+					// For each entry in the array, call function with current index i and current value val
+					// Declare the variables used inside the following loop
+					var lat, lng, title, denomination, diocese, icon, address, web, facebook, google, twitter, youtube, image, content, urls, thisMarker;
+					$.each(data.feed.entry,
+						function(i, val) { // c.f. https://api.jquery.com/jQuery.each/
+							// Assign parameters for mapping and infowindow
+							// For the current entry, look up the header lng, lat, name etc.
+							// The variable name is build like so: gsx$ + tableheader without whitespace or _
+							// Get the value within the field $t
+							lng = val.gsx$lon.$t;
+							lat = val.gsx$lat.$t;
+							title = val.gsx$name.$t;
+							denomination = val.gsx$konfession.$t;
+							if (denomination == 'evangelisch') {
+								diocese = val.gsx$landeskirche.$t + ' (evangelisch)';
+								icon = protestantIcon;
+							} else if (denomination == 'katholisch') {
+								diocese = val.gsx$bistum.$t + ' (katholisch)';
+								icon = catholicIcon;
+							} else {
+								diocese = denomination;
+								icon = othersIcon;
+							}
+							address = val.gsx$adresse.$t;
+							web = val.gsx$urlwebseite.$t;
+							facebook = val.gsx$urlfacebook.$t;
+							google = val.gsx$urlgoogle.$t;
+							twitter = val.gsx$urltwitter.$t;
+							youtube = val.gsx$urlyoutube.$t;
+							image = val.gsx$urlbild.$t;
+							content = '<strong>' + title + '</strong><br>' + address + '<br>' + diocese;
+							urls = '<ul>'
+							if (web != '') {
+								urls = urls + '<li><a href="' + web + '">Webauftritt</a></li>';
+							}
+							if (facebook != '') {
+								urls = urls + '<li><a href="' + facebook + '">Facebook</a></li>';
+							}
+							if (google != '') {
+								urls = urls + '<li><a href="' + google + '">Google+</a></li>';
+							}
+							if (twitter != '') {
+								urls = urls + '<li><a href="' + twitter + '">Twitter</a></li>';
+							}
+							if (youtube != '') {
+								urls = urls + '<li><a href="' + youtube + '">YouTube</a></li>';
+							}
+							urls = urls + '</ul>';
+							if (image != '') {
+								urls = urls + '<img src="' + image + '">';
+							}
+							// Build the popup for this row, that is, the small window, which you get when clicking on the marker
+							// Note that you can do various things here with the data from the spreadsheet
+							// Check, whether data could be extracted (esp. if lat or lng is empty, L throws an error!)
+							if (lat && lng && title && content && urls) {
+								thisMarker = L.marker([lat, lng], {title: title, icon: icon}); // c.f. http://leafletjs.com/reference.html#marker-l.marker
+								thisMarker.addTo(map) // c.f. http://leafletjs.com/reference.html#marker-addto
+									.bindPopup(content + urls); // c.f. http://leafletjs.com/reference.html#marker-bindpopup
+								// Push the marker to the Array which shall be displayed on the map
+								markerArray.push(thisMarker);
+								// add to the layers for the denominations
+								thisMarker.addTo(allLayer);
+								if (denomination == 'evangelisch') {
+									thisMarker.addTo(protestantLayer);
+								} else if (denomination == 'katholisch') {
+									thisMarker.addTo(catholicLayer);
+								} else {
+									thisMarker.addTo(othersLayer);
+								}
+								// add to the layers for the social networks
+								if (web != '') {
+									thisMarker.addTo(webLayer);
+								}
+								if (facebook != '') {
+									thisMarker.addTo(facebookLayer);
+								}
+								if (google != '') {
+									thisMarker.addTo(googleLayer);
+								}
+								if (twitter != '') {
+									thisMarker.addTo(twitterLayer);
+								}
+								if (youtube != '') {
+									thisMarker.addTo(youtubeLayer);
+								}
+							} else {
+								console.log('Problem with lat/lng for data entry' + title, val);
+							}
+						});
+						// add control for the layers
+						var layers = {
+							"alle": allLayer,
+							"evangelisch": protestantLayer,
+							"katholisch": catholicLayer,
+							"andere Konfession": othersLayer,
+							"Webseiten": webLayer,
+							"Facebook": facebookLayer,
+							"Google+": googleLayer,
+							"Twitter": twitterLayer,
+							"YouTube": youtubeLayer,
+						}
+						L.control.layers(layers).addTo(map);
+						// put markers into a group to
+						var group = L.featureGroup(markerArray) // c.f. http://leafletjs.com/reference.html#featuregroup-l.featuregroup
+								.addTo(map); // c.f. http://leafletjs.com/reference.html#layergroup-addto
+							// c.f. http://leafletjs.com/reference.html#featuregroup-getbounds
+							// c.f. http://leafletjs.com/reference.html#map-fitbounds
+						map.fitBounds(group.getBounds());
+					})
+		};
+	</script>
+</body>
+</html>

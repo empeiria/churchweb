@@ -9,9 +9,10 @@ Daten:
 
 # Changelog
 
-## Ideen
-* Daten-Tabelle: automatische Sortierung nach PLZ (erleichert die Suche, ob eine bestimmte Gemeinde in der Liste enthalten ist)
-* weitere Ideen?
+## Version 0.8 by Patrick Robrecht
+* Tabellenansicht, realisiert mit PHP und tablesorter.js, Daten aus csv-Datei
+* Infoseite "Das Projekt"
+* CSS-Datei
 
 ## Version 0.7 by Patrick Robrecht
 * verschiedene Farben für evangelisch / katholisch / andere

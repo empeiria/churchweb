@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* general settings */
+*{padding:0;margin:0;}
+body{padding:2%;font:1em/1.5 Helvetica,Arial,sans-serif;color:#333;}
+h1{font-size:2em;}
+h2{font-size:1.5em;}
+h3{font-size:1.1em;}
+h1,h2,h3,p,dt{margin:.5em 0;}
+li,dd{margin:.5em 2em;}
+abbr{border-bottom:.1em dotted #666;}
+img{border:0;}
+a{color:#1982d1;text-decoration:none;}
+a:focus,a:active,a:hover{text-decoration:underline;}
+
+/* navigation */
+header nav{float:left;width:100%;background:#222;margin:1em 0;}
+header nav ul{font-size:.9em;list-style:none;}
+header nav li{float:left;position:relative;margin:0;color:#1982d1;padding:.6em;}
+header nav a{color:#eee;display:block;}
+
+/* table view */
+
+/* don't display the filter headlines*/
+#table h2{display:none;}
+
+/* display the headline for the active filter */
+#katholisch:target,
+#evangelisch:target,
+#andere:target,
+#web:target,
+#facebook:target,
+#google:target,
+#twitter:target,
+#youtube:target{display:block;}
+
+/* don't display the rows */
+#katholisch:target ~ table tbody tr,
+#evangelisch:target ~ table tbody tr,
+#andere:target ~ table tbody tr,
+#web:target ~ table tbody tr,
+#facebook:target ~ table tbody tr,
+#google:target ~ table tbody tr,
+#twitter:target ~ table tbody tr,
+#youtube:target ~ table tbody tr{display:none;}
+
+/* display the rows for the active filter */
+#katholisch:target ~ table tbody tr.katholisch,
+#evangelisch:target ~ table tbody tr.evangelisch,
+#andere:target ~ table tbody tr.andere,
+#web:target ~ table tbody tr.web,
+#facebook:target ~ table tbody tr.facebook,
+#google:target ~ table tbody tr.google,
+#twitter:target ~ table tbody tr.twitter,
+#youtube:target ~ table tbody tr.youtube{display:table-row;}
+
+/* small screens */
+@media screen and (max-width:700px){
+body{padding:0;font-size:.8em;}
+}
+
+/* print version */
+@media print{
+body{background:none;font-size:10pt;color:#fff;}
+header,footer,nav{display:none;}
+}
