@@ -1,3 +1,5 @@
+/* This code is used in the Google Docs Spreadsheet to calculate the geographic coordinates automatically. */
+
 /**
  * Update the geocode data for one row.
  */

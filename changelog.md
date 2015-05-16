@@ -1,13 +1,18 @@
 ﻿# Aktuelle Version
+* Karte: http://kirchen-im-web.de/karte/
+* Tabelle: http://kirchen-im-web.de/tabelle/
 
-Aktuelle Karte: http://kirche-social-media.patrick-robrecht.de/
+Die Daten:
 
-Daten:
 * Formular: https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform
 * Tabelle: https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/edit?pli=1#gid=372282382
-* JSON: https://spreadsheets.google.com/feeds/list/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/obb1315/public/values?alt=json (verwendet, um die Karte zu realisieren)
 
 # Changelog
+
+## Version 0.9 by Patrick Robrecht
+* Design und Texte überarbeitet
+* NEU: Datenvalidierung
+* jetzt unter http://kirchen-im-web.de/ online
 
 ## Version 0.8 by Patrick Robrecht
 * Tabellenansicht, realisiert mit PHP und tablesorter.js, Daten aus csv-Datei
@@ -26,13 +31,11 @@ Daten:
 
 ## Version 0.4 by Patrick Robrecht
 * Kombination von Eintrags-Anzeige aus 0.2 mit Daten aus 0.3
-* Kleine Änderungen im Formular ('-' aus Spaltenbezeichnungen entfernt, damit diese nicht im JSON aufteilen)
+* Kleine Änderungen im Formular ('-' aus Spaltenbezeichnungen entfernt, damit diese nicht im JSON auftauchen)
 
 ## Version 0.3 by Jörg Lohrer
-* Spreadsheed überarbeitet und Patricks bereinigte Daten eingepflegt in
- *  spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM'
- *  worksheetID " 'obb1315'
-* Formularvorschlag von Patrick umgesetzt und dem Ursprungs-Sheet hinzugefügt https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform
+* Spreadsheed überarbeitet und Patricks bereinigte Daten eingepflegt
+* Formularvorschlag von Patrick umgesetzt und dem Ursprungs-Sheet hinzugefügt
 * Macro "geocode selected cells" bereitgestellt, damit die Adressen geocodiert werden können.
 * Andrés durchkommentierte Codebereinigung übernommen
 

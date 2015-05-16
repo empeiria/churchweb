@@ -1,40 +1,26 @@
 @charset "UTF-8";
-
-/* general settings */
 *{padding:0;margin:0;}
-body{padding:2%;font:1em/1.5 Helvetica,Arial,sans-serif;color:#333;}
+body{padding:1%;font:1em/1.5 Helvetica,Arial,sans-serif;color:#333;}
 h1{font-size:2em;}
 h2{font-size:1.5em;}
-h3{font-size:1.1em;}
-h1,h2,h3,p,dt{margin:.5em 0;}
-li,dd{margin:.5em 2em;}
-abbr{border-bottom:.1em dotted #666;}
+h3{font-size:1em;}
+h1,h2,h3,p{margin:.2em 0;}
+li{margin:.5em 2em;}
+figure{margin:1em;float:right;}
 img{border:0;}
 a{color:#1982d1;text-decoration:none;}
 a:focus,a:active,a:hover{text-decoration:underline;}
+a[href^="http"]:before{content:url(external.png) " ";}
+nav{float:left;width:100%;background:#222;margin:.5em 0;}
+nav ul{font-size:.9em;list-style:none;}
+nav li{float:left;position:relative;margin:0;}
+nav a,nav strong{display:block;padding:.6em;}
+nav a{color:#eee;}
+nav strong{color:#1982d1;}
+#map{height:1024px;width:1024px;}/* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
+footer{margin:1em 0;border-top:.1em solid;font-size:.8em;}
 
-/* navigation */
-header nav{float:left;width:100%;background:#222;margin:1em 0;}
-header nav ul{font-size:.9em;list-style:none;}
-header nav li{float:left;position:relative;margin:0;color:#1982d1;padding:.6em;}
-header nav a{color:#eee;display:block;}
-
-/* table view */
-
-/* don't display the filter headlines*/
-#table h2{display:none;}
-
-/* display the headline for the active filter */
-#katholisch:target,
-#evangelisch:target,
-#andere:target,
-#web:target,
-#facebook:target,
-#google:target,
-#twitter:target,
-#youtube:target{display:block;}
-
-/* don't display the rows */
+#table h2,
 #katholisch:target ~ table tbody tr,
 #evangelisch:target ~ table tbody tr,
 #andere:target ~ table tbody tr,
@@ -42,9 +28,9 @@ header nav a{color:#eee;display:block;}
 #facebook:target ~ table tbody tr,
 #google:target ~ table tbody tr,
 #twitter:target ~ table tbody tr,
-#youtube:target ~ table tbody tr{display:none;}
+#youtube:target ~ table tbody tr{display:none;}/* don't display the filter headlines and the table rows*/
+#katholisch:target,#evangelisch:target,#andere:target,#web:target,#facebook:target,#google:target,#twitter:target,#youtube:target{display:block;}/* display the headline for the active filter */
 
-/* display the rows for the active filter */
 #katholisch:target ~ table tbody tr.katholisch,
 #evangelisch:target ~ table tbody tr.evangelisch,
 #andere:target ~ table tbody tr.andere,
@@ -52,7 +38,7 @@ header nav a{color:#eee;display:block;}
 #facebook:target ~ table tbody tr.facebook,
 #google:target ~ table tbody tr.google,
 #twitter:target ~ table tbody tr.twitter,
-#youtube:target ~ table tbody tr.youtube{display:table-row;}
+#youtube:target ~ table tbody tr.youtube{display:table-row;}/* display the rows for the active filter */
 
 /* small screens */
 @media screen and (max-width:700px){
@@ -62,5 +48,5 @@ body{padding:0;font-size:.8em;}
 /* print version */
 @media print{
 body{background:none;font-size:10pt;color:#fff;}
-header,footer,nav{display:none;}
+footer,nav{display:none;}
 }

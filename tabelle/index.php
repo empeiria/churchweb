@@ -3,29 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Kirchenverzeichnis Social Media - Tabelle</title>
-	<meta name="description" content="Eine Karte mit den Webseiten und Social-Media-Auftritten von Kirchen im deutschsprachigen Raum.">
+	<title>Kirchenverzeichnis Web- und Social-Media-Auftritte - Tabelle</title>
+	<meta name="description" content="Eine Tabelle mit den Webseiten und Social-Media-Auftritten von Kirchen im deutschsprachigen Raum.">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="theme.default.css">
 </head>
 <body id="table">
 	<header>
-		<h1>Kirchenverzeichnis Webauftritte und Social Media</h1>
+		<h1>Tabelle kirchlicher Web- und Social-Media-Auftritte</h1>
 		<nav>
 			<ul>
 				<li><a href="../">Das Projekt</a></li>
 				<li><a href="../karte/">Kartenansicht</a></li>
-				<li>Tabellenansicht</li>
+				<li><strong>Tabellenansicht</strong></li>
+				<li><a href="../validierung/">Datenvalidierung</a></li>
 				<li><a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Gemeinde ergänzen</a></li>
 				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Daten bearbeiten</a></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
-		<h1>Tabellenansicht</h1>
-		<p>Die Tabelle listet christliche Kirchen im deutschsprachigen Raum mit ihren Webauftritten und Social-Media-Profilen auf.</p>
-		<p>Wenn Ihre Gemeinde noch fehlt, können Sie diese über <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">dieses Formular</a> eintragen lassen. 
-			Bereits eintragende Daten können in <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">dieser Google Docs Tabelle</a> geändert werden.</p>
+		<p>Die Tabelle listet christliche Kirchen im deutschsprachigen Raum mit ihren Webauftritten und Social-Media-Profilen - geordnet nach PLZ - auf. Sie können die Daten durch einen Klick auf die Kopfzeile nach anderen Kriterien sortieren und/oder filtern</p>
+		<ul>
+			<li>nach Konfession: <a href="#alle">alle</a> | <a href="#evangelisch">evangelisch</a> | <a href="#katholisch">katholisch</a> | <a href="#andere">andere</a></li>
+			<li>nach Netzwerk: <a href="#alle">alle</a> | <a href="#web">Webseite</a> | <a href="#facebook">Facebook</a> | <a href="#google">Google+</a> | <a href="#twitter">Twitter</a> | <a href="#youtube">YouTube</a></li>
+		</ul>
 		
 		<h2 id="evangelisch">Evangelische Kirchen</h2>
 		<h2 id="katholisch">Katholische Kirchen</h2>
@@ -35,29 +37,16 @@
 		<h2 id="facebook">Kirchen mit Facebook-Seite</h2>
 		<h2 id="google">Kirchen mit Google+-Profil</h2>
 		<h2 id="twitter">Kirchen mit Twitter-Profil</h2>
-		<h2 id="youtube">Kirchen mit Youtube-Profil</h2>		
+		<h2 id="youtube">Kirchen mit Youtube-Profil</h2>
 		
-		<p>Sie können die Daten filtern nach</p>
-		<ul>
-			<li>nach Konfession: <a href="#alle">alle</a> | <a href="#evangelisch">evangelisch</a> | <a href="#katholisch">katholisch</a> | <a href="#andere">andere</a></li>
-			<li>Filter nach Netzwerk: <a href="#alle">alle</a> | <a href="#web">Webseite</a> | <a href="#facebook">Facebook</a> | <a href="#google">Google+</a> | <a href="#twitter">Twitter</a> | <a href="#youtube">YouTube</a></li>
-		</ul>
+		<p>Wenn Ihre Gemeinde noch fehlt, können Sie diese über <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">dieses Formular</a> eintragen lassen. 
+			Bereits eintragende Daten können in <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">dieser Google Docs Tabelle</a> geändert werden.</p>
 			
 		<table id="churchTable" class="tablesorter">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Konfession</th>
-					<th>Landeskirche / Bistum </th>
-					<th>Straße und Hausnummer</th>
-					<th>PLZ</th>
-					<th>Ort</th>
-					<th>Land</th>
-					<th>Webseite</th>
-					<th>Facebook</th>
-					<th>Google</th>
-					<th>Twitter</th>
-					<th>YouTube</th>
+					<th>Name</th><th>Konfession</th><th>Landeskirche / Bistum </th><th>Straße und Hausnummer</th><th>PLZ</th><th>Ort</th><th>Land</th>
+					<th>Webseite</th><th>Facebook</th><th>Google</th><th>Twitter</th><th>YouTube</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -67,15 +56,9 @@
 		if (! ini_set ( 'default_socket_timeout', 15 ))
 			echo "<!-- unable to change socket timeout -->";
 
-		$firstline = true;
-
 		if (($handle = fopen ( $spreadsheet_url, "r" )) !== FALSE) {
+			fgetcsv ( $handle, 1000, "," ); // skip line with the headers
 			while ( ($data = fgetcsv ( $handle, 1000, "," )) !== FALSE ) {
-				$spreadsheet_data[] = $data;
-		
-			if ($firstline) {
-				$firstline = false;
-			} else {
 				$class = $data[2];
 				if ($class != 'katholisch' && $class != 'evangelisch') {
 					$class = 'andere';
@@ -125,19 +108,18 @@
 				echo $youtube;
 				echo '</tr>';
 			}
+			fclose ( $handle );
+		} else {
+			die("Problem reading csv");
 		}
-		fclose ( $handle );
-	} else {
-		die("Problem reading csv");
-	}
 	?>
 			</tbody>
 		</table>
 	</main>
-	<script src='http://code.jquery.com/jquery-2.1.4.js'></script>
-	<script src="jquery.tablesorter.js"></script>	
+	<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="jquery.tablesorter.js"></script>
 	<script>
-		$("#churchTable").tablesorter({sortList: [ [0,0] ]});
+		$("#churchTable").tablesorter({sortList: [ [4,0] ]});
 	</script>
 </body>
 </html>

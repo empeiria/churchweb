@@ -3,41 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Kirchenverzeichnis Social Media - Kartenansicht</title>
+	<title>Kirchenverzeichnis Web- und Social-Media-Auftritte - Kartenansicht</title>
 	<meta name="description" content="Eine Karte mit den Webseiten und Social-Media-Auftritten von Kirchen im deutschsprachigen Raum.">
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel='stylesheet' href='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.css'>
-	<style>
-	#map {
-		height: 1024px; /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
-	}
-	</style>
+	<link rel="stylesheet" href="https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.css">
 </head>
 <body>
 	<header>
-		<h1>Kirchenverzeichnis Webauftritte und Social Media</h1>
+		<h1>Karte kirchlicher Web- und Social-Media-Auftritte</h1>
 		<nav>
 			<ul>
 				<li><a href="../">Das Projekt</a></li>
-				<li>Kartenansicht</li>
+				<li><strong>Kartenansicht</strong></li>
 				<li><a href="../tabelle/">Tabellenansicht</a></li>
+				<li><a href="../validierung/">Datenvalidierung</a></li>
 				<li><a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Gemeinde ergänzen</a></li>
 				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Daten bearbeiten</a></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
-		<h1>Kartenansicht</h1>
-		<p>Die Karte zeigt christliche Kirchen mit ihren Webauftritten und Social-Media-Profilen; dabei sind evangelische lila, katholische gelb und andere grün dargestellt.</p>
+		<p>Die Karte zeigt christliche Kirchen mit ihren Webauftritten und Social-Media-Profilen. Dabei sind evangelische lila, katholische gelb und andere grün dargestellt.</p>
 		<p>Wenn Ihre Gemeinde noch fehlt, können Sie diese über <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">dieses Formular</a> eintragen lassen. 
 			Eine tabellarische Übersicht der bereits eingetragenen Daten gibt es in <a href="../tabelle/">dieser Tabelle</a>.</p>
 		<div id="map">Bitte warten. Die Karte wird geladen.</div>
 	</main>
 	<!-- code from: http://sandbox.idre.ucla.edu/?p=906 -->
 	<!-- Load libraries over https! -->
-	<script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
-	<!-- <script src='https://code.jquery.com/jquery-migrate-1.2.1.min.js'></script> -->
-	<script src='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.js'></script>
+	<script src='http://code.jquery.com/jquery-2.1.4.js'></script>
+	<script src="https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.js"></script>
 
 	<!-- The code for this script -->
 	<script type="text/javascript">
@@ -81,7 +75,6 @@
 			var spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM';
 			var worksheetID = 'obb1315';
 			var url = 'https://spreadsheets.google.com/feeds/list/' + spreadsheetID + '/' + worksheetID + '/public/values?alt=json';
-			console.log('Fetching spreadsheet data from ', url);
 			$.getJSON(url,
 				function(data) { // c.f. https://api.jquery.com/jQuery.getJSON/
 					// Assign the JSON response to data

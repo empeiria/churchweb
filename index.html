@@ -3,46 +3,63 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Kirchenverzeichnis Social Media</title>
+	<title>Kirchenverzeichnis Web- und Social-Media-Auftritte</title>
 	<meta name="description" content="Eine Karte mit den Webseiten und Social-Media-Auftritten von Kirchen im deutschsprachigen Raum.">
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 	<header>
-		<h1>Kirchenverzeichnis Webauftritte und Social Media</h1>
+		<h1>Kirchenverzeichnis Web- und Social-Media-Auftritte</h1>
 		<nav>
 			<ul>
-				<li>Das Projekt</li>
+				<li><strong>Das Projekt</strong></li>
 				<li><a href="karte/">Kartenansicht</a></li>
 				<li><a href="tabelle/">Tabellenansicht</a></li>
+				<li><a href="validierung/">Datenvalidierung</a></li>
 				<li><a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Gemeinde ergänzen</a></li>
 				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Daten bearbeiten</a></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
-		<h1>Das Projekt</h1>
-		<p>Wir realisieren eine <a href="/karte">Karte</a> der Social-Media-Aktivitäten christlicher Kirchen im deutschsprachigen Raum.</p>
-		<p>Dafür nutzen wir Kartenmaterial von <a href="https://www.openstreetmap.org">OpenStreetMap</a>, das unter einer freien Lizenz steht.</p>
-		<p>Für unsere Implementierung nutzen wir die JavaScript-Bibliotheken <a href="http://leafletjs.com/">Leaflet</a> und <a href="http://tablesorter.com/docs/">Tablesorter</a>.</p>
+		<figure>
+			<a href="karte/"><img alt="Karte" src="screenshot.png"></a>
+			<figcaption><a href="karte/">Zur Karte</a></figcaption>
+		</figure>
+		<p>Wir realisieren eine <a href="/karte">Karte</a> der Social-Media-Aktivitäten christlicher Kirchen im deutschsprachigen Raum. Dafür nutzen wir Kartenmaterial von <a href="https://www.openstreetmap.org">OpenStreetMap</a>, das unter einer freien Lizenz steht.</p>
 		
 		<h2>Offene Daten</h2>
-		<p>Für die Realisierung der Karte sind natürlich die Daten zu den Webauftritten und Social-Media-Profilen notwendig. Da es sich hierbei um öffentlich verfügbare Informationen handelt, müssen diese nur zusammengetragen und gepflegt werden.</p>
-		<p>Die Daten stehen in einem freien und offenen Format zur Verfügung, das bedeutet, dass die Daten auch für andere Projekte verwendet werden können (z. B. eine App).</p>
+		<p>Für die Umsetzung der Karte sind natürlich die Adressen sowie die URLs der Webauftritten und der Social-Media-Profile notwendig. Da es sich hierbei um öffentlich verfügbare Informationen handelt, müssen diese „nur“ zusammengetragen und gepflegt werden. Dabei kann jeder mithelfen, der ein wenig Zeit und Lust mitbringt:</p>
 		<ul>
-			<li>Sie möchten Ihre Gemeinde ergänzen? <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Das geht über dieses Formular</a>. 
-				In unserer <a href="karte/">Karten- </a> oder <a href="tabelle/">Tabellenansicht</a> können Sie vorher nachschauen, ob Ihre Gemeinde bereits gelistet ist.</li>
-			<li>Sie möchten Daten korrigieren oder ergänzen? <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Das geht in dieser Google Docs Tabelle</a>.</li>
+			<li>Sie möchten Ihre (oder auch eine andere) Gemeinde ergänzen? <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Das geht über dieses Formular</a>. 
+				In unserer <a href="karte/">Karten- </a> oder <a href="tabelle/">Tabellenansicht</a> können Sie vorher nachschauen, ob die Gemeinde bereits gelistet ist.</li>
+			<li>Sie möchten bereits gelistete Daten korrigieren oder ergänzen? <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Das geht in dieser Google Docs Tabelle</a>.</li>
+			<li>Sie haben selber einen Datensatz und möchten uns diesen zur Verfügung stellen? Dann kontaktieren Sie bitte einen der Entwickler.</li>
 		</ul>
+		<p>Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden (z. B. eine App mit ähnlicher Funktion).</p>
+		<p>Die Daten können <a href="validierung/">automatisch validiert werden</a> - das hilft bei der Suche nach Fehlern in den Daten. Außerdem prüfen wir regelmäßig, ob unter den verlinkten URLs noch eine Seite erreichbar ist.</p>
+		
+		<p>Download-Links in verschiedenen Formaten: <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/export?format=ods&id=12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM">OpenDocument-Tabelle (ods)</a> | <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/export?format=csv&id=12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM&gid=683654467">csv</a> | <a href="https://spreadsheets.google.com/feeds/list/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/obb1315/public/values?alt=json">JSON</a></p>
 		
 		<h2>Entwicklung</h2>
-		<p>Die Entwicklung ist ein Projekt von</p>
+		<p>Der Code sind offen auf <a href="https://github.com/patrickrobrecht/churchweb/">Github</a> verfügbar.</p>
+
+		<h3>Verwendete Programmiersprachen und Bibliotheken</h3>
 		<ul>
-			<li>Jörg Lohrer</li>
-			<li><a href="https://patrick-robrecht.de">Patrick Robrecht</a></li>
+			<li>ein bisschen PHP, HTML und CSS</li>
+			<li>JavaScript, besonders die Bibliotheken <a href="https://jquery.com/">jQuery</a>, <a href="http://leafletjs.com/">Leaflet</a> (für die Karte) und <a href="http://tablesorter.com/docs/">Tablesorter</a> (für).</li>
 		</ul>
 		
-		<p>Den Code gibt's auf <a href="https://github.com/patrickrobrecht/churchweb/">Github</a>.</p>
+		<h3>Entwickler</h3>
+		<p>Die Entwicklung ist ein Projekt von</p>
+		<ul>
+			<li><a href="http://joerg-lohrer.de/">Jörg Lohrer</a></li>
+			<li><a href="https://patrick-robrecht.de">Patrick Robrecht</a></li>
+		</ul>
+		<p>Möchtest du bei der Weiterentwicklung mithelfen? Dann melde dich doch bei uns (Kontakt siehe Webseiten).</p>
 	</main>
+	<footer>
+		<a href="https://patrick-robrecht.de/impressum/">Impressum</a>
+	</footer>
 </body>
 </html>
