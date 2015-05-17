@@ -2,12 +2,19 @@
 * Karte: http://kirchen-im-web.de/karte/
 * Tabelle: http://kirchen-im-web.de/tabelle/
 
-Die Daten:
+## Die Daten
 
 * Formular: https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform
 * Tabelle: https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/edit?pli=1#gid=372282382
 
 # Changelog
+
+## Geplant
+* Anzeige: Likes/Follower/Abonnenten bei Facebook/Google+/Twitter/YouTube
+
+## Version 0.10 by Patrick Robrecht
+* valides HTML und CSS, kein Inline-CSS mehr
+* geocoding.js / Google Docs Tabelle: Spalte "Adresse" entfernt, da überflüssig
 
 ## Version 0.9 by Patrick Robrecht
 * Design und Texte überarbeitet

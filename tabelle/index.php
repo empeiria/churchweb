@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de-DE">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
@@ -57,8 +57,8 @@
 			echo "<!-- unable to change socket timeout -->";
 
 		if (($handle = fopen ( $spreadsheet_url, "r" )) !== FALSE) {
-			fgetcsv ( $handle, 1000, "," ); // skip line with the headers
-			while ( ($data = fgetcsv ( $handle, 1000, "," )) !== FALSE ) {
+			fgetcsv ( $handle, 200, "," ); // skip line with the headers
+			while ( ($data = fgetcsv ( $handle, 500, "," )) !== FALSE ) {
 				$class = $data[2];
 				if ($class != 'katholisch' && $class != 'evangelisch') {
 					$class = 'andere';
@@ -101,25 +101,17 @@
 				echo '<td>' . $data[6] . '</td>';
 				echo '<td>' . $data[7] . '</td>';
 				echo '<td>' . $data[8] . '</td>';
-				echo $web;
-				echo $facebook;
-				echo $google;
-				echo $twitter;
-				echo $youtube;
-				echo '</tr>';
+				echo $web, $facebook, $google, $twitter, $youtube, '</tr>';
 			}
 			fclose ( $handle );
 		} else {
 			die("Problem reading csv");
-		}
-	?>
+		} ?>
 			</tbody>
-		</table>
+		</table>	
 	</main>
 	<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 	<script src="jquery.tablesorter.js"></script>
-	<script>
-		$("#churchTable").tablesorter({sortList: [ [4,0] ]});
-	</script>
+	<script>$("#churchTable").tablesorter({sortList: [ [4,0] ]});</script>
 </body>
 </html>

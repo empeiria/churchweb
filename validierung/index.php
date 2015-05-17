@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="de-DE">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Kirchenverzeichnis Web- und Social-Media-Auftritte - Fehler</title>
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../tabelle/theme.default.css">	
-	<style>
-		td{background:#515157 !important;}/*grey -> unknown*/
-		.r{background:#FF0000 !important;text-decoration:underline;}/*red -> error */
-		.r1{background:#88DC92 !important;}/*green -> all okay*/
-	</style>
+	<link rel="stylesheet" href="../tabelle/theme.default.css">
 </head>
-<body id="table">
+<body id="validierung">
 	<header>
 		<h1>Mögliche Fehler im Kirchenverzeichnis</h1>
 		<nav>
@@ -44,8 +39,8 @@
 			echo "<!-- unable to change socket timeout -->";
 
 		if (($handle = fopen ( $spreadsheet_url, "r" )) !== FALSE) {
-			fgetcsv ( $handle, 1000, "," ); // skip line with the headers
-			while ( ($data = fgetcsv ( $handle, 1000, "," )) !== FALSE ) {
+			fgetcsv ( $handle, 200, "," ); // skip line with the headers
+			while ( ($data = fgetcsv ( $handle, 500, "," )) !== FALSE ) {
 				if ($data[9] != '') {
 					$web = '<td class="r' . isURL($data[9]) . '"><a href="' . $data[9] . '">Web</a></td>';
 				} else {
@@ -79,26 +74,18 @@
 				echo '<td class="r' . isPostalCode($data[6], $data[8]) . '">' . $data[6] . '</td>';
 				echo '<td class="r' . isTown($data[7]) . '">' . $data[7] . '</td>';
 				echo '<td class="r' . isCountry($data[8]) . '">' . $data[8] . '</td>';
-				echo $web;
-				echo $facebook;
-				echo $google;
-				echo $twitter;
-				echo $youtube;
-				echo '</tr>';
+				echo $web, $facebook, $google, $twitter, $youtube, '</tr>';
 			}
 			fclose ( $handle );
 		} else {
 			die("Problem reading csv");
-		}
-	?>
+		} ?>
 			</tbody>
 		</table>
 	</main>
 	<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 	<script src="../tabelle/jquery.tablesorter.js"></script>
-	<script>
-		$("#churchTable").tablesorter();
-	</script>
+	<script>$("#churchTable").tablesorter();</script>
 </body>
 </html>
 <?php
@@ -164,7 +151,7 @@
 	}
 		
 	function isYoutubeURL($url) {
-		return isURL($url) && startsWith($url, 'https://www.youtube.com/');
+		return isURL($url) && (startsWith($url, 'https://www.youtube.com/user/') || startsWith($url, 'https://www.youtube.com/channel/'));
 	}
 	
 	function startsWith($haystack, $needle) {

@@ -8,11 +8,10 @@ function geocodeEditedRow(cellstring) {
   var cells = sheet.getRange(cellstring); // sheet.getDataRange();
 
   var streetColumn = 6; // column F (street)
-  var addressColumn = 16; // column P (address concenated)
   var addressRow;
 
-  var latColumn = addressColumn + 1; // column Q
-  var lngColumn = addressColumn + 2; // column R
+  var latColumn = 16; // column P
+  var lngColumn = 17; // column Q
 
   var geocoder = Maps.newGeocoder().setRegion('de');
   var street, postalCode, town, location;
@@ -23,12 +22,10 @@ function geocodeEditedRow(cellstring) {
     postalCode = cells.getCell(addressRow, streetColumn+1).getValue();
     town = cells.getCell(addressRow, streetColumn+2).getValue();
     address = street + ", " + postalCode + " " + town;
-    cells.getCell(addressRow, addressColumn).setValue(address);
 
     // Geocode the address and plug the lat, lng pair into the 
     // 2nd and 3rd elements of the current range row.
     location = geocoder.geocode(address);
-    Logger.log(location);
     // Only change cells if geocoder seems to have gotten a 
     // valid response.
     if (location.status == 'OK') {
@@ -44,16 +41,15 @@ function geocodeEditedRow(cellstring) {
 /**
  * Update the geocode data for the whole document.
  */
-function geocodeUpdate() {
+/*function geocodeUpdate() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var cells = sheet.getDataRange();
 
   var streetColumn = 6; // column F (street)
-  var addressColumn = 16; // column P (address concenated)
   var addressRow;
 
-  var latColumn = addressColumn + 1; // column Q
-  var lngColumn = addressColumn + 2; // column R
+  var latColumn = 16; // column P
+  var lngColumn = 17; // column Q
 
   var geocoder = Maps.newGeocoder().setRegion('de');
   var street, postalCode, town, location;
@@ -64,12 +60,10 @@ function geocodeUpdate() {
     postalCode = cells.getCell(addressRow, streetColumn+1).getValue();
     town = cells.getCell(addressRow, streetColumn+2).getValue();
     address = street + ", " + postalCode + " " + town;
-    cells.getCell(addressRow, addressColumn).setValue(address);
 
     // Geocode the address and plug the lat, lng pair into the 
     // 2nd and 3rd elements of the current range row.
-    location = geocoder.geocode(address);
-    Logger.log(location);
+    location = geocoder.geocode(address
     // Only change cells if geocoder seems to have gotten a 
     // valid response.
     if (location.status == 'OK') {
@@ -80,7 +74,7 @@ function geocodeUpdate() {
       cells.getCell(addressRow, lngColumn).setValue(lng);
     }
   }
-};
+};*/
 
 /**
  * This function is called after editing one cell in the table. 
@@ -92,10 +86,3 @@ function onEdit(e){
     geocodeEditedRow(cellstring);
   }
 };
-
-/**
- * This function is called during opening the document.
- */
-function onOpen() {
-  geocodeUpdate();
-}

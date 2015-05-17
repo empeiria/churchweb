@@ -19,34 +19,23 @@ nav a{color:#eee;}
 nav strong{color:#1982d1;}
 #map{height:1024px;width:1024px;}/* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
 footer{margin:1em 0;border-top:.1em solid;font-size:.8em;}
-
 #table h2,
-#katholisch:target ~ table tbody tr,
-#evangelisch:target ~ table tbody tr,
-#andere:target ~ table tbody tr,
-#web:target ~ table tbody tr,
-#facebook:target ~ table tbody tr,
-#google:target ~ table tbody tr,
-#twitter:target ~ table tbody tr,
-#youtube:target ~ table tbody tr{display:none;}/* don't display the filter headlines and the table rows*/
-#katholisch:target,#evangelisch:target,#andere:target,#web:target,#facebook:target,#google:target,#twitter:target,#youtube:target{display:block;}/* display the headline for the active filter */
-
-#katholisch:target ~ table tbody tr.katholisch,
-#evangelisch:target ~ table tbody tr.evangelisch,
-#andere:target ~ table tbody tr.andere,
-#web:target ~ table tbody tr.web,
-#facebook:target ~ table tbody tr.facebook,
-#google:target ~ table tbody tr.google,
-#twitter:target ~ table tbody tr.twitter,
-#youtube:target ~ table tbody tr.youtube{display:table-row;}/* display the rows for the active filter */
-
-/* small screens */
-@media screen and (max-width:700px){
+#katholisch:target ~ table tbody tr,#evangelisch:target ~ table tbody tr,#andere:target ~ table tbody tr,
+#web:target ~ table tbody tr,#facebook:target ~ table tbody tr,#google:target ~ table tbody tr,
+#twitter:target ~ table tbody tr,#youtube:target ~ table tbody tr{display:none;}/* don't display the filter headlines and the table rows*/
+#katholisch:target,#evangelisch:target,#andere:target,
+#web:target,#facebook:target,#google:target,#twitter:target,#youtube:target{display:block;}/* display the headline for the active filter */
+#katholisch:target ~ table tbody tr.katholisch,#evangelisch:target ~ table tbody tr.evangelisch,#andere:target ~ table tbody tr.andere,
+#web:target ~ table tbody tr.web,#facebook:target ~ table tbody tr.facebook,#google:target ~ table tbody tr.google,
+#twitter:target ~ table tbody tr.twitter,#youtube:target ~ table tbody tr.youtube{display:table-row;}/* display the rows for the active filter */
+#validierung td{background:#515157 !important;}/*grey -> unknown*/
+#validierung .r{background:#FF0000 !important;text-decoration:underline;}/*red -> error */
+#validierung .r1{background:#88DC92 !important;}/*green -> all okay*/
+@media screen and (max-width:700px){ /* small screens */
 body{padding:0;font-size:.8em;}
 }
 
-/* print version */
-@media print{
+@media print{ /* print version */
 body{background:none;font-size:10pt;color:#fff;}
 footer,nav{display:none;}
 }
