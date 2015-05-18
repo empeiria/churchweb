@@ -18,6 +18,7 @@
 				<li><strong>Datenvalidierung</strong></li>
 				<li><a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Gemeinde ergänzen</a></li>
 				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Daten bearbeiten</a></li>
+				<li><a href="../entwicklung/">Entwicklung</a></li>				
 			</ul>
 		</nav>
 	</header>
@@ -83,6 +84,9 @@
 			</tbody>
 		</table>
 	</main>
+	<footer>
+		<a href="../entwicklung/">Impressum</a>
+	</footer>	
 	<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 	<script src="../tabelle/jquery.tablesorter.js"></script>
 	<script>$("#churchTable").tablesorter();</script>
