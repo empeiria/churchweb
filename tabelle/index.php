@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Kirchenverzeichnis Web- und Social-Media-Auftritte - Tabelle</title>
-	<meta name="description" content="Eine Tabelle mit den Webseiten und Social-Media-Auftritten von Kirchen im deutschsprachigen Raum.">
+	<title>Kirchliche Web- und Social-Media-Auftritte (tabellarisch)</title>
+	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Hier eine tabellarische, überkonfessionelle Übersicht für den deutsprachigen Raum.">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="theme.default.css">
 </head>
@@ -14,12 +14,11 @@
 		<nav>
 			<ul>
 				<li><a href="../">Das Projekt</a></li>
-				<li><a href="../karte/">Kartenansicht</a></li>
-				<li><strong>Tabellenansicht</strong></li>
-				<li><a href="../validierung/">Datenvalidierung</a></li>
-				<li><a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Gemeinde ergänzen</a></li>
-				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Daten bearbeiten</a></li>
-				<li><a href="../entwicklung/">Entwicklung</a></li>				
+				<li><a href="../karte/">Karte</a></li>
+				<li><a href="../tabelle/"><strong>Tabelle</strong></a></li>
+				<li><a href="../vergleich/">Vergleich</a></li>
+				<li><a href="../validierung/">Offene Daten</a></li>
+				<li><a href="../entwicklung/">Entwicklung</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -94,14 +93,14 @@
 				} else {
 					$youtube = '<td></td>';
 				}
-				echo '<tr class="' . $class .'">';
-				echo '<td>' . $data[1] . '</td>';
-				echo '<td>' . $data[2] . '</td>';
-				echo '<td>' . $data[3] . $data[4] . '</td>';
-				echo '<td>' . $data[5] . '</td>';
-				echo '<td>' . $data[6] . '</td>';
-				echo '<td>' . $data[7] . '</td>';
-				echo '<td>' . $data[8] . '</td>';
+				echo '<tr class="', $class, '">';
+				echo '<td>', $data[1], '</td>';
+				echo '<td>', $data[2], '</td>';
+				echo '<td>', $data[3], $data[4], '</td>';
+				echo '<td>', $data[5], '</td>';
+				echo '<td>', $data[6], '</td>';
+				echo '<td>', $data[7], '</td>';
+				echo '<td>', $data[8], '</td>';
 				echo $web, $facebook, $google, $twitter, $youtube, '</tr>';
 			}
 			fclose ( $handle );
@@ -112,7 +111,7 @@
 		</table>	
 	</main>
 	<footer>
-		<a href="../entwicklung/">Impressum</a>
+		<p><a href="../impressum.html">Impressum</a></p>
 	</footer>	
 	<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 	<script src="jquery.tablesorter.js"></script>

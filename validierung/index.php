@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Kirchenverzeichnis Web- und Social-Media-Auftritte - Fehler</title>
+	<title>Kirchenverzeichnis Web- und Social-Media-Auftritte - Fehleranalyse im Datenbestand</title>
+	<meta name="description" content="Viele Kirchengemeinden nutzen Social-Media-Auftritte. Das Projekt kirchen-im-web.de macht diese sichtbar.">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../tabelle/theme.default.css">
 </head>
@@ -13,17 +14,16 @@
 		<nav>
 			<ul>
 				<li><a href="../">Das Projekt</a></li>
-				<li><a href="../karte/">Kartenansicht</a></li>
-				<li><a href="../tabelle/">Tabellenansicht</a></li>
-				<li><strong>Datenvalidierung</strong></li>
-				<li><a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Gemeinde ergänzen</a></li>
-				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Daten bearbeiten</a></li>
-				<li><a href="../entwicklung/">Entwicklung</a></li>				
+				<li><a href="../karte/">Karte</a></li>
+				<li><a href="../tabelle/">Tabelle</a></li>
+				<li><a href="../vergleich/">Vergleich</a></li>
+				<li><a href="../validierung/"><strong>Offene Daten</strong></a></li>
+				<li><a href="../entwicklung/">Entwicklung</a></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
-		<p>Die Daten werden hier validiert. Ein grüner Hintergrund bedeutet, dass unser Programm die Daten für syntaktisch korrekt hält; eine rote, unterstrichene entsprechen nicht den Anforderungen.</p>
+		<p>Die Daten werden hier validiert. Ein grüner Hintergrund bedeutet, dass unser Programm die Daten für syntaktisch korrekt hält; rote, unterstrichene Daten entsprechen nicht den Anforderungen.</p>
 		<p>Fehler können in <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">dieser Google Docs Tabelle</a> behoben werden.</p>
 		<table id="churchTable" class="tablesorter">
 			<thead>
@@ -83,9 +83,23 @@
 		} ?>
 			</tbody>
 		</table>
+		<section>
+			<h2>Was wird hier geprüft?</h2>
+			<p>Bei der Validierung wird geprüft, ob</p>
+			<ul>
+				<li>der Name kein Komma enthält,</li>
+				<li>die Konfession katholisch, evangelisch oder evangelisch-freikirchlich ist,</li>
+				<li>bei evangelischen Kirchen eine Landeskirche bzw. bei katholischen Kirchen ein Bistum und sonst keins von beidem angegeben ist,</li>
+				<li>eine Straße mit Hausnummer angeben ist,</li>
+				<li>die Postleitzahl fünf- (Deutschland) bzw. vierstellig (sonst) ist,</li>
+				<li>das Land Deutschland, Liechtenstein, Österreich oder die Schweiz ist,</li>
+				<li>eine syntaktisch gültige Web-URL angegeben ist (nicht jedoch, ob unter dieser Inhalt bzw. der passende Inhalt erreichbar ist),</li>
+				<li>und ob die URLs für Facebook-Seite, Google+, Twitter und Youtube syntaktisch gültige URLs für das jeweilige Netzwerk sind (nicht jedoch, ob unter der URL auch passender Inhalt erreichbar ist).</li>
+			</ul>
+		</section>
 	</main>
 	<footer>
-		<a href="../entwicklung/">Impressum</a>
+		<p><a href="../impressum.html">Impressum</a></p>
 	</footer>	
 	<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 	<script src="../tabelle/jquery.tablesorter.js"></script>
@@ -134,7 +148,7 @@
 	}	
 
 	function isCountry($country) {
-		return ($country == 'Deutschland' || $country == 'Österreich' || $country == 'Schweiz');
+		return ($country == 'Deutschland' || $country == 'Liechtenstein' || $country == 'Österreich' || $country == 'Schweiz');
 	}	
 	
 	function isURL($url) {

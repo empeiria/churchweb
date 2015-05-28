@@ -1,7 +1,5 @@
 ﻿# Kirchen im Web
-Wir realisieren hiermit eine Karte der Web- und Social-Media-Auftritte christlicher Kirchen im deutschsprachigen Raum.
-
-Karte: http://kirchen-im-web.de/karte/
+Wir realisieren hiermit eine [Karte der Web- und Social-Media-Auftritte christlicher Kirchen](http://kirchen-im-web.de/karte/) im deutschsprachigen Raum.
 
 ## Funktionen
 * offene Daten (in Google Spreadsheet)
@@ -11,16 +9,12 @@ Karte: http://kirchen-im-web.de/karte/
 Aktuelle Änderungen gibt es im Changelog.
 
 ## OpenData 
-Wir nutzen offene Daten für die Umsetzung dieses Projektes.
+Wir nutzen offene Daten für die Umsetzung dieses Projektes. Die Daten können in [dieser Google-Tabelle](https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM) bearbeitet werden. Wollen Sie eine Gemeinde ergänzen, geht dies am einfachsten über [dieses Formular](https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform).
 
-Die Daten können unter https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM bearbeitet werden.
-
-Wollen Sie D: https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform. The data will be added to the table and to the map automatically.
+<hr />
 
 # The churchweb project
-This project realizes a map of social media activities of churches in the German speaking countries.
-
-Map: http://kirchen-im-web.de/karte/
+This project realizes a [map of social media activities of churches](http://kirchen-im-web.de/karte/) in German speaking countries.
 
 ## Features
 * open data in google spreadsheet
@@ -30,12 +24,12 @@ Map: http://kirchen-im-web.de/karte/
 For recent changes, check our changelog.
 
 ## OpenData 
-We use the open data to realize this project.
+We use open data to realize this project. The data is editable in this [Google table](https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM)
 
-The data: https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM
+If you want to add data, you can submit your data in [this form]( https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform). The data will be added to the table automatically.
 
-If you want to add data, you can submit your data in this form: https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform. The data will be added to the table and to the map automatically.
+<hr />
 
-Screenshot
+Screenshot (2015-05-29)
 =====================
-![Screenshot](http://kirchen-im-web.de/screenshot-original.png)
+![Screenshot](http://kirchen-im-web.de/screenshot.png)

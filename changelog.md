@@ -9,34 +9,37 @@
 
 # Changelog
 
-## Geplant
-* Anzeige: Likes/Follower/Abonnenten bei Facebook/Google+/Twitter/YouTube
+## Version 1.0
+* Anzeige: Likes/Follower/Abonnenten bei Facebook/Google+/Twitter/YouTube (Beta)
+* neues Menü
+* Changelog für Version 1.0 auf der Seite "Entwicklung" 
+* neuer Screenshot
 
-## Version 0.10 by Patrick Robrecht
+## Version 0.10
 * valides HTML und CSS, kein Inline-CSS mehr
 * geocoding.js / Google Docs Tabelle: Spalte "Adresse" entfernt, da überflüssig
 
-## Version 0.9 by Patrick Robrecht
+## Version 0.9
 * Design und Texte überarbeitet
 * NEU: Datenvalidierung
 * jetzt unter http://kirchen-im-web.de/ online
 
-## Version 0.8 by Patrick Robrecht
+## Version 0.8
 * Tabellenansicht, realisiert mit PHP und tablesorter.js, Daten aus csv-Datei
 * Infoseite "Das Projekt"
 * CSS-Datei
 
-## Version 0.7 by Patrick Robrecht
+## Version 0.7
 * verschiedene Farben für evangelisch / katholisch / andere
 
-## Version 0.6 by Patrick Robrecht
+## Version 0.6
 * Filter nach Konfession und Social-Media-Kanälen ergänzt
 
-## Version 0.5 by Patrick Robrecht
+## Version 0.5
 * Berechnung der Koordinaten in Google Docs-Tabelle automatisiert.
 * in Karte Hinweis auf das Formular zum Eintragen und die Tabelle mit Daten ergänzt
 
-## Version 0.4 by Patrick Robrecht
+## Version 0.4
 * Kombination von Eintrags-Anzeige aus 0.2 mit Daten aus 0.3
 * Kleine Änderungen im Formular ('-' aus Spaltenbezeichnungen entfernt, damit diese nicht im JSON auftauchen)
 
@@ -46,7 +49,7 @@
 * Macro "geocode selected cells" bereitgestellt, damit die Adressen geocodiert werden können.
 * Andrés durchkommentierte Codebereinigung übernommen
 
-## Version 0.2 by Patrick Robrecht
+## Version 0.2
 * Ergänzungen können jetzt per Formular übermittelt werden.
 * Zu jedem Eintrag werden nun Name, Adresse, Bistum/Landeskirche, Konfession sowie Webauftritt, Facebook-Seite, Twitter-Profil, Google+-Seite und Youtube-Kanal angezeigt (sofern bekannt/vorhanden). Optional kann ein Logo hinzugefügt werden.
 * Karte mit den Daten nun je Gemeinde ein Punkt auf der Karte
