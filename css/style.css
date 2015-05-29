@@ -14,8 +14,7 @@ a[href^="http"]:before{content:url(external.png) " ";}
 nav{float:left;width:100%;background:#222;margin:.5em 0;}
 nav ul{font-size:.9em;list-style:none;}
 nav li{float:left;position:relative;margin:0;}
-nav a,nav strong{display:block;padding:.6em;}
-nav a{color:#eee;}
+nav a{display:block;padding:.8em;color:#eee;}
 nav strong{color:#1982d1;}
 #map{height:1024px;width:1024px;}/* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
 footer{margin:1em 0;border-top:.1em solid;font-size:.8em;}
