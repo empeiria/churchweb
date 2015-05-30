@@ -10,7 +10,7 @@
 </head>
 <body id="validierung">
 	<header>
-		<h1>Mögliche Fehler im Kirchenverzeichnis</h1>
+		<h1>Offene Daten</h1>
 		<nav>
 			<ul>
 				<li><a href="../">Das Projekt</a></li>
@@ -23,68 +23,90 @@
 		</nav>
 	</header>
 	<main>
-		<p>Die Daten werden hier validiert. Ein grüner Hintergrund bedeutet, dass unser Programm die Daten für syntaktisch korrekt hält; rote, unterstrichene Daten entsprechen nicht den Anforderungen.</p>
-		<p>Fehler können in <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">dieser Google Docs Tabelle</a> behoben werden.</p>
-		<table id="churchTable" class="tablesorter">
-			<thead>
-				<tr>
-					<th>Name</th><th>Konfession</th><th>Landeskirche / Bistum </th><th>Straße und Hausnummer</th><th>PLZ</th><th>Ort</th><th>Land</th>
-					<th>Webseite</th><th>Facebook</th><th>Google</th><th>Twitter</th><th>YouTube</th>
-				</tr>
-			</thead>
-			<tbody>
-	<?php
-		$spreadsheet_url = "https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/export?format=csv&id=12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM&gid=683654467";
-
-		if (! ini_set ( 'default_socket_timeout', 15 ))
-			echo "<!-- unable to change socket timeout -->";
-
-		if (($handle = fopen ( $spreadsheet_url, "r" )) !== FALSE) {
-			fgetcsv ( $handle, 200, "," ); // skip line with the headers
-			while ( ($data = fgetcsv ( $handle, 500, "," )) !== FALSE ) {
-				if ($data[9] != '') {
-					$web = '<td class="r' . isURL($data[9]) . '"><a href="' . $data[9] . '">Web</a></td>';
-				} else {
-					$web = '<td class="r"></td>';
+		<p>Für die Umsetzung unseres Projektes sind natürlich die Adressen sowie die URLs der Webauftritten und der Social-Media-Profile notwendig. 
+			Da es sich hierbei um öffentlich verfügbare Informationen handelt, müssen diese „nur“ zusammengetragen und gepflegt werden. 
+			Dabei kann jeder mithelfen, der ein wenig Zeit und Lust mitbringt:</p>
+		<ul>
+			<li>Sie möchten Ihre (oder auch eine andere) Gemeinde ergänzen? <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Das geht über dieses Formular</a>. 
+				In unserer <a href="../karte/">Karten- </a> oder <a href="../tabelle/">Tabellenansicht</a> können Sie vorher nachschauen, ob die Gemeinde bereits gelistet ist.</li>
+			<li>Sie möchten bereits gelistete Daten korrigieren oder ergänzen? <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Das geht in dieser Google Docs Tabelle</a>.</li>
+			<li>Sie haben selber einen Datensatz und möchten uns diesen zur Verfügung stellen? Dann kontaktieren Sie bitte einen der <a href="../impressum.html">Entwickler</a>.</li>
+		</ul>
+		<section id="download">
+			<h2>Download</h2>
+			<p>Die Daten stehen in einem freien und offenen Format zur Verfügung, d. h. die Daten können auch für andere Projekte verwendet werden (z. B. eine App mit ähnlicher Funktion).</p>
+			<p>Download als:</p>
+			<ul>
+				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/export?format=ods&amp;id=12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM">OpenDocument-Tabelle (ods)</a></li>
+				<li><a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/export?format=csv&amp;id=12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM&amp;gid=683654467">csv</a></li>
+				<li><a href="https://spreadsheets.google.com/feeds/list/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/obb1315/public/values?alt=json">JSON</a></li>
+			</ul>
+		</section>
+		<section id="validierung">
+			<h2>Validierung</h2>
+			<p>Die Daten werden hier validiert, d. h. ein Programm überprüft, ob die Daten in der Tabelle unseren <a href="#anforderungen">Anforderungen</a> entsprechen.
+				Ein grüner Hintergrund bedeutet, dass unser Programm die Daten für syntaktisch korrekt hält; rote, unterstrichene Daten entsprechen nicht den Anforderungen.</p>
+			<table id="churchTable" class="tablesorter">
+				<thead>
+					<tr>
+						<th>Name</th><th>Konfession</th><th>Landeskirche / Bistum </th><th>Straße und Hausnummer</th><th>PLZ</th><th>Ort</th><th>Land</th>
+						<th>Webseite</th><th>Facebook</th><th>Google+</th><th>Twitter</th><th>YouTube</th>
+					</tr>
+				</thead>
+				<tbody>
+		<?php
+			$spreadsheet_url = "https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/export?format=csv&id=12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM&gid=683654467";
+	
+			if (! ini_set ( 'default_socket_timeout', 15 ))
+				echo "<!-- unable to change socket timeout -->";
+	
+			if (($handle = fopen ( $spreadsheet_url, "r" )) !== FALSE) {
+				fgetcsv ( $handle, 200, "," ); // skip line with the headers
+				while ( ($data = fgetcsv ( $handle, 500, "," )) !== FALSE ) {
+					if ($data[9] != '') {
+						$web = '<td class="r' . isURL($data[9]) . '"><a href="' . $data[9] . '">Web</a></td>';
+					} else {
+						$web = '<td class="r"></td>';
+					}
+					if ($data[10] != '') {
+						$facebook = '<td class="r' . isFacebookURL($data[10]) . '"><a href="' . $data[10] . '">Facebook</a></td>';
+					} else {
+						$facebook = '<td></td>';
+					}
+					if ($data[11] != '') {
+						$google = '<td class="r' . isGooglePlusURL($data[11]) . '"><a href="' . $data[11] . '">Google+</a></td>';
+					} else {
+						$google = '<td></td>';
+					}
+					if ($data[12] != '') {
+						$twitter = '<td class="r' . isTwitterURL($data[12]) . '"><a href="' . $data[12] . '">Twitter</a></td>';
+					} else {
+						$twitter = '<td></td>';
+					}
+					if ($data[13] != '') {
+						$youtube = '<td class="r' . isYoutubeURL($data[13]) . '"><a href="' . $data[13] . '">YouTube</a></td>';
+					} else {
+						$youtube = '<td></td>';
+					}
+					echo '<tr>';
+					echo '<td class="r' . isValidName($data[1]) . '">' . $data[1] . '</td>';
+					echo '<td class="r' . isDenomination($data[2]) . '">' . $data[2] . '</td>';
+					echo '<td class="r' . isLandeskircheBistum($data[2], $data[3], $data[4]) . '">' . $data[3] . $data[4] . '</td>';
+					echo '<td class="r' . isStreet($data[5]) . '">' . $data[5] . '</td>';
+					echo '<td class="r' . isPostalCode($data[6], $data[8]) . '">' . $data[6] . '</td>';
+					echo '<td class="r' . isTown($data[7]) . '">' . $data[7] . '</td>';
+					echo '<td class="r' . isCountry($data[8]) . '">' . $data[8] . '</td>';
+					echo $web, $facebook, $google, $twitter, $youtube, '</tr>';
 				}
-				if ($data[10] != '') {
-					$facebook = '<td class="r' . isFacebookURL($data[10]) . '"><a href="' . $data[10] . '">Facebook</a></td>';
-				} else {
-					$facebook = '<td></td>';
-				}
-				if ($data[11] != '') {
-					$google = '<td class="r' . isGooglePlusURL($data[11]) . '"><a href="' . $data[11] . '">Google+</a></td>';
-				} else {
-					$google = '<td></td>';
-				}
-				if ($data[12] != '') {
-					$twitter = '<td class="r' . isTwitterURL($data[12]) . '"><a href="' . $data[12] . '">Twitter</a></td>';
-				} else {
-					$twitter = '<td></td>';
-				}
-				if ($data[13] != '') {
-					$youtube = '<td class="r' . isYoutubeURL($data[13]) . '"><a href="' . $data[13] . '">YouTube</a></td>';
-				} else {
-					$youtube = '<td></td>';
-				}
-				echo '<tr>';
-				echo '<td class="r' . isValidName($data[1]) . '">' . $data[1] . '</td>';
-				echo '<td class="r' . isDenomination($data[2]) . '">' . $data[2] . '</td>';
-				echo '<td class="r' . isLandeskircheBistum($data[2], $data[3], $data[4]) . '">' . $data[3] . $data[4] . '</td>';
-				echo '<td class="r' . isStreet($data[5]) . '">' . $data[5] . '</td>';
-				echo '<td class="r' . isPostalCode($data[6], $data[8]) . '">' . $data[6] . '</td>';
-				echo '<td class="r' . isTown($data[7]) . '">' . $data[7] . '</td>';
-				echo '<td class="r' . isCountry($data[8]) . '">' . $data[8] . '</td>';
-				echo $web, $facebook, $google, $twitter, $youtube, '</tr>';
-			}
-			fclose ( $handle );
-		} else {
-			die("Problem reading csv");
-		} ?>
-			</tbody>
-		</table>
-		<section>
-			<h2>Was wird hier geprüft?</h2>
+				fclose ( $handle );
+			} else {
+				die("Problem reading csv");
+			} ?>
+				</tbody>
+			</table>
+		</section>	
+		<section id="anforderungen">
+			<h2>Was wird hier geprüft? - unsere Anforderungen</h2>
 			<p>Bei der Validierung wird geprüft, ob</p>
 			<ul>
 				<li>der Name kein Komma enthält,</li>

@@ -22,8 +22,11 @@
 		echo '<p>Neugenerierung erfolgreich.</p>';
 		
 		// overwrite index.html with index2.html
-		rename( 'index2.html', 'index.html' );
-		echo '<p><a href="./">Social-Media-Liste</a> aktualisiert.</p>';
+		if (rename( 'index2.html', 'index.html' )) {
+			echo '<p><a href="./">Social-Media-Liste</a> aktualisiert.</p>';
+		} else {
+			echo '<p>Fehler beim Überschreiben.</p>';
+		}
 		if (@unlink('index2.html')) {
 			echo '<p>Zwischenergebnis gelöscht.</p>';
 		}

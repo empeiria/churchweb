@@ -46,7 +46,7 @@
 			<thead>
 				<tr>
 					<th>Name</th><th>Konfession</th><th>Landeskirche / Bistum </th><th>Straße und Hausnummer</th><th>PLZ</th><th>Ort</th><th>Land</th>
-					<th>Webseite</th><th>Facebook</th><th>Google</th><th>Twitter</th><th>YouTube</th>
+					<th>Webseite</th><th>Facebook</th><th>Google+</th><th>Twitter</th><th>YouTube</th>
 				</tr>
 			</thead>
 			<tbody>
