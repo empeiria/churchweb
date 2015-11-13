@@ -1,125 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="de-DE">
 <head>
-  <meta charset="UTF-8">
-  <title>Kirchenverzeichnis Social Media</title>
-  <link rel='stylesheet' href='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.css'>
-  <style>
-      #map {
-          /* Leaflet fetches tiles with height 256px, so choose a multiplied value of that here */
-          height: 1024px;
-      }
-  </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Kirchenverzeichnis Web- und Social-Media-Auftritte</title>
+	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Das Projekt kirchen-im-web.de macht diese sichtbar.">
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<!-- code from: http://sandbox.idre.ucla.edu/?p=906 -->
-  <div id="map">
-      Bitte warten. Die Karte wird geladen.
-  </div>
+	<header>
+		<h1>Kirchenverzeichnis Web- und Social-Media-Auftritte</h1>
+		<nav>
+			<ul>
+				<li><a href="./"><strong>Das Projekt</strong></a></li>
+				<li><a href="karte/">Karte</a></li>
+				<li><a href="tabelle/">Tabelle</a></li>
+				<li><a href="vergleich/">Vergleich</a></li>
+				<li><a href="validierung/">Offene Daten</a></li>
+				<li><a href="entwicklung/">Entwicklung</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<figure>
+			<a href="karte/"><img alt="Karte" src="screenshot.png"></a>
+			<figcaption><a href="karte/">Zur Karte</a></figcaption>
+		</figure>
+		<section>
+			<h2>Das ist kirchen-im-web.de</h2>
+			<p>Wir wollen kirchliche Social-Media-Aktivitäten sichtbar machen und so zeigen, dass viele Kirchengemeinden, Landeskirchen und Bistümer auch im Web Öffentlichtkeitsarbeit machen.
+			 	Wir stellen die Kirchen dabei sowohl <a href="karte/">als Karte</a> als <a href="tabelle/">tabellarisch</a> dar, aber auch in einem kleinen <a href="vergleich/">Vergleich</a>.</p>				
+			<p>Unser Projekt ist überkonfessionell, d. h. egal ob evangelisch, katholisch oder freikirchlich - alle können mitmachen. 
+				Unsere Ansichten bieten daher neben einer vollständigen Ansicht die Möglichkeit, nach Konfessionen oder auch nach Netzwerk zu filtern.</p>
+		</section>
+		
+		<section id="faq">
+			<h2>Häufig gestellte Fragen (FAQ)</h2>
+			
+			<h3>Wie trage ich (m)eine Gemeinde ein?</h3>
+			<p>Für die Umsetzung der Karte sind natürlich die Adressen sowie die URLs der Webauftritten und der Social-Media-Profile notwendig. Da es sich hierbei um öffentlich verfügbare Informationen handelt, müssen diese „nur“ zusammengetragen und gepflegt werden. Dabei kann jeder mithelfen, der ein wenig Zeit und Lust mitbringt:</p>
+			<ul>
+				<li>Sie möchten Ihre (oder auch eine andere) Gemeinde ergänzen? <a href="https://docs.google.com/forms/d/1364JigiaC71J4AZXM52jatkfwFEgryxBW7N6eBOnExM/viewform">Das geht über dieses Formular</a>. 
+					In unserer <a href="karte/">Karten- </a> oder <a href="tabelle/">Tabellenansicht</a> können Sie vorher nachschauen, ob die Gemeinde bereits gelistet ist.</li>
+				<li>Sie möchten bereits gelistete Daten korrigieren oder ergänzen? <a href="https://docs.google.com/spreadsheets/d/12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM/">Das geht in dieser Google Docs Tabelle</a>.</li>
+				<li>Sie haben selber einen Datensatz und möchten uns diesen zur Verfügung stellen? Dann kontaktieren Sie bitte einen der Entwickler.</li>
+			</ul>
+			<p></p>
 
-  <!-- Load libraries over https! -->
-  <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
-  <script src='https://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
-  <script src='https://d591zijq8zntj.cloudfront.net/leaflet-0.7.3/leaflet.js'></script>
-
-  <!-- The code for this script -->
-  <script type="text/javascript">
-// Think about wrapping the following in $(document).ready(function() { /* code goes here */ });
-// This way, for larger documents, the code is executed once the content is ready.
-var map;
-var markerArray = [];
-loadMap();
-function loadMap() {
-    'use strict'; // Strict mode makes the browse mourn, if bad practise is used ;-)
-    // create a map in the "map" div, set the view to a given place and zoom
-    map = L.map('map') // c.f. http://leafletjs.com/reference.html#map-l.map
-           .setView([25,8], 11); // c.f. http://leafletjs.com/reference.html#map-setview
-    
-    // add an OpenStreetMap tile layer
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { // c.f. http://leafletjs.com/reference.html#tilelayer-l.tilelayer
-        // c.f. http://leafletjs.com/reference.html#tilelayer-attribution
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map); // c.f. http://leafletjs.com/reference.html#tilelayer-addto
-    // map google spreadsheet data to marker
-    getGoogleData();
-};
-    
-function getGoogleData() {
-    'use strict';
-    var spreadsheetID = '12d-puCj61KmcHssXTV7hRUXaZacoVP6EXupo07eHfoM';
-    var worksheetID = 'obb1315';
-    var url = 'https://spreadsheets.google.com/feeds/list/'+spreadsheetID+'/'+worksheetID+'/public/values?alt=json'; 
-    console.log('Fetching spreadsheet data from ', url);
-    
-    $.getJSON(url,function(data){ // c.f. https://api.jquery.com/jQuery.getJSON/
-        // Assign the JSON response to data
-        // Then look up a key "feed" in data.
-        // Then look up a key "entry" in feed. Its value is an Array (that is [] notation).
-        // For each entry in the array, call function with current index i and current value val
-        // Declare the variables used inside the following loop
-        var lat, lng, title, denomination, diocese, address, web, facebook, google, twitter, youtube, image, content, urls, thisMarker;
-        $.each(data.feed.entry, function(i, val){ // c.f. https://api.jquery.com/jQuery.each/
-            // Assign parameters for mapping and infowindow
-            // For the current entry, look up the header lng, lat, namedergemeinde etc
-            // The variable name is build like so: gsx$ + tableheader without whitespace or _
-            // Get the value within the field $t
-            lng = val.gsx$lon.$t;
-            lat = val.gsx$lat.$t;
-			title = val.gsx$name.$t;
-			denomination = val.gsx$konfession.$t;
-			if (denomination == 'evangelisch') {
-				diocese = val.gsx$landeskirche.$t;
-			} else if (denomination == 'katholisch') {
-				diocese = val.gsx$bistum.$t;
-			}
-			address = val.gsx$concenatefunction.$t;
-			web = val.gsx$urlwebseite.$t;
-			facebook = val.gsx$urlfacebook.$t;
-			google = val.gsx$urlgoogle.$t;
-			twitter = val.gsx$urltwitter.$t;
-			youtube = val.gsx$urlyoutube.$t;
-			image = val.gsx$urlbild.$t;
-			content = '<strong>' + title + '</strong><br>' + address + '<br>' + diocese + ', ' + denomination;
-			var urls = '<ul>'
-			if (web != '') {
-				urls = urls + '<li><a href="' + web + '">Webauftritt</a></li>';
-			}
-			if (facebook != '') {
-				urls = urls + '<li><a href="' + facebook + '">Facebook</a></li>';
-			}
-			if (google != '') {
-				urls = urls + '<li><a href="' + google + '">Google+</a></li>';
-			}
-			if (youtube != '') {
-				urls = urls + '<li><a href="' + youtube + '">YouTube</a></li>';
-			}			
-			urls = urls + '</ul>';
-			if (image != '') {
-				urls = urls + '<img src="' + image + '">';
-			}			
-            // Build the popup for this row, that is, the small window, which you get when clicking on the marker
-            // Note that you can do various things here with the data from the spreadsheet
-            // Check, whether data could be extracted (esp. if lat or lng is empty, L throws an error!)
-            if (lat && lng && title && content && urls) {
-                thisMarker = L.marker([lat, lng]); // c.f. http://leafletjs.com/reference.html#marker-l.marker
-                thisMarker.addTo(map) // c.f. http://leafletjs.com/reference.html#marker-addto
-                          .bindPopup(content + urls);
-                          // c.f. http://leafletjs.com/reference.html#marker-bindpopup
-    
-                // Push the marker to the Array which shall be displayed on the map
-                markerArray.push(thisMarker);
-            } else {
-                console.log('Problem with lat/lng for data entry' + title, val);
-            }
-        });
-        // put markers into a group to 
-        var group = L.featureGroup(markerArray) // c.f. http://leafletjs.com/reference.html#featuregroup-l.featuregroup
-                     .addTo(map); // c.f. http://leafletjs.com/reference.html#layergroup-addto
-        // c.f. http://leafletjs.com/reference.html#featuregroup-getbounds
-        // c.f. http://leafletjs.com/reference.html#map-fitbounds
-        map.fitBounds(group.getBounds());
-    })
-};
-</script>
+			<h3>Was ist der Unterschied zu ähnlichen Projekten?</h3>
+			<ul>
+				<li>Unser Projekt ist bewusst überkonfessionell ausgelegt.</li>
+				<li><a href="validierung/#download">Offene Daten</a>: Die Daten stehen in einem freien und offenen Format zur Verfügung, 
+					d. h. die Daten können auch für andere Projekte verwendet werden.</li>
+				<li>Die Daten können <a href="validierung/">automatisch validiert werden</a> - das hilft bei der Suche nach Fehlern in den Daten. 
+					Außerdem prüfen wir regelmäßig, ob unter den verlinkten URLs noch eine Seite erreichbar ist.
+					So sind unsere Karte und Tabelle immer aktuell.</li>
+				<li>Auch der <a href="entwicklung/">Quellcode dieser Webanwendung</a> ist offen zugänglich und kann so von jedermann/-frau verbessert werden. 
+					Natürlich sind gerne Verbesserungsvorschläge und Anregungen beim <a href="impressum.html">Entwicklerteam</a> immer sehr willkommen.</li>
+			</ul>
+			
+			<h3>Sie haben eine Frage, die hier nicht beantwortet wird?</h3>
+			<p>Dann wenden Sie sich doch an <a href="impressum.html">die Entwickler</a> (auch bei <a href="https://twitter.com/kirchenimweb/">Twitter</a>) - fragen Sie einfach.</p>
+		</section>
+	</main>
+	<footer>
+		<p><a href="impressum.html">Impressum</a></p>
+	</footer>
 </body>
 </html>

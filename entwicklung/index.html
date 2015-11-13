@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Entwicklung kirchen-im-web.de</title>
+	<meta name="description" content="Viele Kirchengemeinden nutzen mittlerweile Social-Media-Auftritte. Das Projekt kirchen-im-web.de macht diese sichtbar.">
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+	<header>
+		<h1>Entwicklung von kirchen-im-web.de</h1>
+		<nav>
+			<ul>
+				<li><a href="../">Das Projekt</a></li>
+				<li><a href="../karte/">Karte</a></li>
+				<li><a href="../tabelle/">Tabelle</a></li>
+				<li><a href="../vergleich/">Vergleich</a></li>
+				<li><a href="../validierung/">Offene Daten</a></li>
+				<li><a href="../entwicklung/"><strong>Entwicklung</strong></a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<p>Der Code von kirchen-im-web.de ist offen auf <a href="https://github.com/patrickrobrecht/churchweb/">Github</a> verfügbar.</p>
+		
+		<h2>Entwickler</h2>
+		<p>kirchen-im-web.de ist ein Projekt von</p>
+		<ul>
+			<li><a href="http://joerg-lohrer.de/">Jörg Lohrer</a></li>
+			<li><a href="https://patrick-robrecht.de">Patrick Robrecht</a></li>
+		</ul>
+		<p>Möchtest du bei der Weiterentwicklung mithelfen? Dann melde dich doch bei uns (Kontakt siehe Webseiten).</p>
+	
+		<h2>Changelog</h2>
+		
+		<h3>Version 1.0 (2015-05-29)</h3>
+		<ul>
+			<li>Visualisierung der eingetragenden Gemeinden als <a href="../karte/">Karte</a>
+				<ul>
+					<li>realisiert mit Kartenmaterial von <a href="https://www.openstreetmap.org">OpenStreetMap</a> und leaflet.js</li>
+					<li>Marker auf der Karte in verschiedene Farben für evangelisch / katholisch / andere</li>
+				</ul></li>
+			<li>Daten als HTML-<a href="../tabelle/">Tabelle</a>
+				<ul>
+					<li>Filter-Möglichkeit nach Konfession und Netzwerk (über Anker und Klassen im HTML und CSS 3.0)</li>
+					<li>Sortierung nach beliebiger Spalte mit tablesorter.js</li>
+				</ul></li>
+			<li><a href="../vergleich/">Vergleich</a> der Likes/Follower/Abonnenten bei Facebook/Google+/Twitter/YouTube</li>
+			<li>Offene Daten: Name, Konfession, Landeskirche bzw. Bistum, Adresse, Web-/Facebook-/Google+-/Twitter-/YouTube-URL
+				<ul>
+					<li>Daten in Google Spreadsheet Tabelle</li>
+					<li>automatische Berechnung von Längen- und Breitengrad in dieser Tabelle bei Eintragungen durch angemeldete Nutzer</li>
+					<li>Eintragung über Google-Formular</li>
+					<li>automatisierter Test der Daten auf syntaktische Richtigkeit (<a href="../validierung/#validierung">Validierung</a>)</li>
+				</ul></li>
+		</ul>
+		
+		<h2>Verwendete Programmiersprachen und Bibliotheken</h2>
+		<ul>
+			<li>HTML5 und CSS 3.0</li>
+			<li>PHP</li>
+			<li>JavaScript, besonders die Bibliotheken 
+				<ul>
+					<li><a href="https://jquery.com/">jQuery</a></li>
+					<li><a href="http://leafletjs.com/">Leaflet</a> (für die Karte)</li>
+					<li><a href="http://tablesorter.com/docs/">Tablesorter</a> (für die Sortierung der Datentabellen)</li>
+				</ul></li>
+		</ul>		
+	</main>
+	<footer>
+		<p><a href="../impressum.html">Impressum</a></p>
+	</footer>
+</body>
+</html>
