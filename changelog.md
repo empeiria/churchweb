@@ -1,5 +1,5 @@
 ﻿# Aktuelle Version
-* Karte: http://kirchen-im-web.de/karte/
+* Kartendarstellung: http://kirchen-im-web.de/karte/
 * Tabelle: http://kirchen-im-web.de/tabelle/
 
 ## Die Daten
